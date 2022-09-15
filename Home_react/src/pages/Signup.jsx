@@ -10,7 +10,6 @@ const Signup=()=>{
       email:'',
       password:'',
       Mbno:'',
-      LiscenceNo:'',
       AadharNo:'',
       Plotno:'',
       street:'',
@@ -53,7 +52,6 @@ const resetData=()=>{
     email:'',
     password:'',
     Mbno:'',
-    LiscenceNo:'',
     AadharNo:'',
     Plotno:'',
     street:'',
@@ -104,7 +102,7 @@ console.log(data);
 
 
 <CardHeader className="text-center">
-<h3>Builder Registration</h3>
+<h3>User Registration</h3>
 
 </CardHeader>
 
@@ -141,16 +139,16 @@ value={data.Mbno}
 <Row>
     <Col md={6}>
       <FormGroup>
-        <Label for="LiscenceNo">
-        <h5>Enter LiscenceNo</h5>
+        <Label for="Email">
+        <h5>Enter Email</h5>
         </Label>
         <Input
-          id="LiscenceNo"
-          name="LiscenceNo"
-          placeholder=" Enter LiscenceNo"
+          id="Email"
+          name="Email"
+          placeholder="Enter Email"
           type="text"
-          onChange={(e)=>handleChange(e,'LiscenceNo')}
-          value={data.LiscenceNo}
+          onChange={(e)=>handleChange(e,'Email')}
+          value={data.Email}
         />
       </FormGroup>
     </Col>
@@ -174,20 +172,6 @@ value={data.Mbno}
 {/*------------------------------------------------------------------------------------------------------- */}
 
 
-
-<FormGroup>
-<Label for="name"> <h5>Enter Email </h5></Label>
-
-<Input
-type="email"
-placeholder="Enter email"
-onChange={(e)=>handleChange(e,'email')}
-value={data.email}
-/>
-
-</FormGroup>
-
-
 <FormGroup>
     <Label for="examplePassword">
     <h5>Enter password </h5>
@@ -205,6 +189,7 @@ value={data.email}
   {/*------------------------------------------------------------------------------------------------------- */}
 
   <Row>
+    <h4>Address Details:</h4>
     <Col md={4}>
       <FormGroup>
         <Label for="Plotno">
