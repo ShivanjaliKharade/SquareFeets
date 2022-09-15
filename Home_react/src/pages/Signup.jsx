@@ -1,7 +1,9 @@
-import { Card, CardBody, CardHeader, Container,Form, FormGroup, Input, Label,Row,Col, Button } from "reactstrap";
+import { Card, CardBody, CardHeader, Container,Form, FormGroup, Input, Label,Row,Col, Button, FormFeedback } from "reactstrap";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { signup } from "../services/Builder-service";
+import {toast} from 'react-toastify'
 
 const Signup=()=>{
     
@@ -68,7 +70,14 @@ const resetData=()=>{
 //submiting the form
 
 const submitForm=(event)=>{
-  event.preventDefault()// for stop default behaviour of form otherwise it will be reload and submit the form
+  event.preventDefault();// for stop default behaviour of form otherwise it will be reload and submit the form
+
+ /*   if(error.isError){
+    toast.error("Form data is invalid, correct all details then submit.");
+    setError({...error,isError:false})
+    return;
+  }  */
+
 
 console.log(data);
 
@@ -77,6 +86,38 @@ console.log(data);
            
           
   //call server api for  sending data
+  signup(data).then((resp)=>{
+
+    console.log(resp);
+    console.log("sucess log");
+    toast.success("Builder is Registered Sucessfully!")
+    setData({
+      name:'',
+      email:'',
+      password:'',
+      Mbno:'',
+      LiscenceNo:'',
+      AadharNo:'',
+      Plotno:'',
+      street:'',
+      landmark:'',
+      city:'',
+      state:'',
+      pin:'',
+
+
+    });
+  }).catch((error)=>{
+     console.log(error)
+     console.log("error log");
+     //hanlde error in proper way
+
+     setError({
+      errors:error,
+      isError:true
+     })
+
+  })
 
 };
   
@@ -120,7 +161,11 @@ type="text"
 placeholder="Enter Name"
 onChange={(e)=>handleChange(e,'name')}
 value={data.name}
+invalid={error.errors?.response?.data?.name ? true: false}
 />
+<FormFeedback>
+  {error.errors?.response?.data?.name ? true: false}
+</FormFeedback>
 
 </FormGroup>
 
@@ -133,7 +178,11 @@ placeholder="Enter Mobileno."
 id="Mbno"
 onChange={(e)=>handleChange(e,'Mbno')}
 value={data.Mbno}
+
 />
+
+
+
 
 </FormGroup>
 
@@ -183,7 +232,13 @@ type="email"
 placeholder="Enter email"
 onChange={(e)=>handleChange(e,'email')}
 value={data.email}
+invalid={error.errors?.response?.data?.email ? true: false}
+
 />
+
+<FormFeedback>
+  {error.errors?.response?.data?.email ? true: false}
+</FormFeedback>
 
 </FormGroup>
 
@@ -199,7 +254,12 @@ value={data.email}
       type="password"
       onChange={(e)=>handleChange(e,'password')}
       value={data.password}
+      invalid={error.errors?.response?.data?.password ? true: false}
     />
+
+<FormFeedback>
+  {error.errors?.response?.data?.password ? true: false}
+</FormFeedback>
   </FormGroup>
 
   {/*------------------------------------------------------------------------------------------------------- */}
