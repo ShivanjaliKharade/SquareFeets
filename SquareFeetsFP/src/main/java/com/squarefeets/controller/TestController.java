@@ -1,18 +1,20 @@
 package com.squarefeets.controller;
 
 import com.squarefeets.payload.LoginRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/api/session")
 public class TestController {
 
     @PostMapping("/post-session")
+    @RolesAllowed("ROLE_CUSTOMER")
     public List returnSession(@RequestBody String str, HttpServletRequest request){
         String append = "";
         append+=str;

@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
@@ -62,10 +63,13 @@ public class AuthController {
         }
         usernameOrEmail.add(loginRequest.getUsernameOrEmail());
         request.getSession().setAttribute("usernameOrEmail", usernameOrEmail);
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        String username = loginRequest.getUsernameOrEmail();
+        System.out.println(username);
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username));
     }
 
     @PostMapping("/signup/customer")
@@ -140,8 +144,9 @@ public class AuthController {
                 signUpRequestForBuilder.getState(),
                 Integer.parseInt(signUpRequestForBuilder.getPincode()));
 
-        Builder builder = new Builder(signUpRequestForBuilder.getBuilderLicense(),
-                signUpRequestForBuilder.getApprovalStatus());
+        Builder builder = new Builder(signUpRequestForBuilder.getBuilderLicense());
+
+        builder.setApprovalStatus("Not Approved");
 
         user.setAddress(address);
         user.setBuilder(builder);
@@ -165,7 +170,9 @@ public class AuthController {
     public ResponseEntity<?> signout(HttpServletRequest request) {
         System.out.println(request.getSession().getAttribute("usernameOrEmail"));
         request.getSession().invalidate();
+        SecurityContextHolder.clearContext();
 
         return new ResponseEntity<>("Logout Successfull", HttpStatus.OK);
     }
+
 }

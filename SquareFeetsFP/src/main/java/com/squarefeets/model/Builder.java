@@ -28,9 +28,13 @@ public class Builder implements Serializable {
     public Builder() {
     }
 
-    public Builder(String builderLicense, String approvalStatus) {
+//    public Builder(String builderLicense, String approvalStatus) {
+//        this.builderLicense = builderLicense;
+//        this.approvalStatus = approvalStatus;
+//    }
+
+    public Builder(String builderLicense) {
         this.builderLicense = builderLicense;
-        this.approvalStatus = approvalStatus;
     }
 
     public int getBuilderId() {
