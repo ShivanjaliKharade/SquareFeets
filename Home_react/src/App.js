@@ -1,24 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Header from './components/Header';
+import Howitworks from './components/Howitworks'
+import About from './components/About';
+import Properties from './components/Properties';
+import Contact from './components/Contact';
+
+
 
 
 
 function App() {
-    return ( <
-        >
-        <
-        ToastContainer position = 'bottom-center' / >
-        <
-        Signup / >
-
-        <
-        />
+    return ( 
+        <>
+         <Header/>
+         <Howitworks/>
+         <About/>
+         <Properties/>
+         <Contact/>
+         
+        </>
+        
     );
 }
 
