@@ -61,7 +61,7 @@ public class AuthController {
             request.getSession().setAttribute("usernameOrEmail", usernameOrEmail);
         }
         usernameOrEmail.add(loginRequest.getUsernameOrEmail());
-
+        request.getSession().setAttribute("usernameOrEmail", usernameOrEmail);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
@@ -162,8 +162,10 @@ public class AuthController {
     }
 
     @PostMapping("/signout")
-    public ResponseEntity<?> signout(@Valid @RequestBody SignUpRequestForBuilder signUpRequestForBuilder, HttpServletRequest request) {
+    public ResponseEntity<?> signout(HttpServletRequest request) {
+        System.out.println(request.getSession().getAttribute("usernameOrEmail"));
         request.getSession().invalidate();
+
         return new ResponseEntity<>("Logout Successfull", HttpStatus.OK);
     }
 }
