@@ -2,10 +2,13 @@ import { Card, CardBody, CardHeader, Container,Form, FormGroup, Input, Label,Row
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+//import { object } from "yup";
 
-const Signup=()=>{
+
+const Signup=()=>
+{
     
-    const[data,setData]=useState({
+    const data = {
       name:'',
       email:'',
       password:'',
@@ -18,35 +21,38 @@ const Signup=()=>{
       state:'',
       pin:'',
 
-    })
+    }
    
-
-    
-
-const [error,setError]=useState({
- errors:{},
- isError:false
-})
+  
+const [formvalues, setFormValues] = useState(data);
+const [formerrors,setFormErrors]=useState({});
+const [isSubmit, setIsSubmit] = useState(false);
 
 //usefor printing data 
-useEffect(()=>{
-  console.log(data);
-},[data])
-
+/* useEffect(()=>{
+  function Signup(){}
+  console.log(formerrors);
+ if(object.keys(formerrors).length === 0 && isSubmit){
+  console.log(formvalues);
+ }
+},[formerrors]);
+ */
 
 
 //handlechange
-
-const handleChange=(event,property)=>{
-
+const handleChange=(event)=>
+{
+const {name, value} = event.target ;
+setFormValues ({...setFormValues, [name]: value});
+};
   //dynamic value setting
   
-setData({...data,[property]:event.target.value})
+//setData({...data,[property]:event.target.value})
 
-}
+
 
 //reset data
-const resetData=()=>{
+/* const resetData=()=>{
   setData({
     name:'',
     email:'',
@@ -61,29 +67,51 @@ const resetData=()=>{
     pin:'',
 
   })
-}
+} */
 
 //submiting the form
 
-const submitForm=(event)=>{
-  event.preventDefault()// for stop default behaviour of form otherwise it will be reload and submit the form
-
-console.log(data);
-
-
-  //if data validate
-           
-          
-  //call server api for  sending data
-
-};
-  
-
- 
+  function submitForm(event) {
+    event.preventDefault(); // for stop default behaviour of form otherwise it will be reload and submit the form
+    setFormErrors(validate(formvalues));
+    setIsSubmit(true);
+    console.log(data);
 
 
+    //if data validate
+    //call server api for  sending data
+  };
+  useEffect(() => {
+    console.log(formerrors);
+    if (Object.keys(formerrors).length === 0 && isSubmit) {
+      console.log(formvalues);
+    }
+  }, [formerrors]);
+  const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = "Name is required!";
+    }
+    if (!values.Mbno) {
+      errors.Mbno = "Mobile No. is required!";
+    }
+    if (!values.email) {
+      errors.email = "Email is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "This is not a valid email format!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4) {
+      errors.password = "Password must be more than 4 characters";
+    } else if (values.password.length > 10) {
+      errors.password = "Password cannot exceed more than 10 characters";
+    }
+    return errors;
+  };
 
-    return(
+return(
 
 <>
 
@@ -116,25 +144,29 @@ console.log(data);
 <Input
 type="text"
 placeholder="Enter Name"
-onChange={(e)=>handleChange(e,'name')}
-value={data.name}
+/* onChange={(e)=>handleChange(e,'name')}
+value={data.name} */
+value={formvalues.name}
+onChange={handleChange}
 />
-
 </FormGroup>
+<p>{formerrors.name}</p>
 
 <FormGroup>
 <Label for="Mbno"><h5>Enter Mobileno</h5></Label>
 
 <Input
-type="text"
+type="number"
 placeholder="Enter Mobileno."
 id="Mbno"
-onChange={(e)=>handleChange(e,'Mbno')}
-value={data.Mbno}
+/* onChange={(e)=>handleChange(e,'Mbno')}
+value={data.Mbno} */
+value={formvalues.Mbno}
+onChange={handleChange}
 />
 
 </FormGroup>
-
+<p>{formerrors.Mbno}</p>
 
 <Row>
     <Col md={6}>
@@ -147,10 +179,13 @@ value={data.Mbno}
           name="Email"
           placeholder="Enter Email"
           type="text"
-          onChange={(e)=>handleChange(e,'Email')}
-          value={data.Email}
+          /* onChange={(e)=>handleChange(e,'Email')}
+          value={data.email} */
+          value={formvalues.email}
+          onChange={handleChange}
         />
       </FormGroup>
+      <p>{formerrors.email}</p>
     </Col>
     <Col md={6}>
       <FormGroup>
@@ -161,9 +196,11 @@ value={data.Mbno}
           id="AadharNo"
           name="AadharNo"
           placeholder="AadharNo"
-          type="text"
-          onChange={(e)=>handleChange(e,'AadharNo')}
-          value={data.AadharNo}
+          type="number"
+          /* onChange={(e)=>handleChange(e,'AadharNo')}
+          value={data.AadharNo} */
+          value={formvalues.AadharNo}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -181,10 +218,13 @@ value={data.Mbno}
       name="password"
       placeholder=" Enter password "
       type="password"
-      onChange={(e)=>handleChange(e,'password')}
-      value={data.password}
+      /* onChange={(e)=>handleChange(e,'password')}
+      value={data.password} */
+      value={formvalues.password}
+      onChange={handleChange}
     />
   </FormGroup>
+  <p>{formerrors.password}</p>
 
   {/*------------------------------------------------------------------------------------------------------- */}
 
@@ -199,9 +239,11 @@ value={data.Mbno}
           id="Plotno"
           name="Plotno"
           placeholder=" Enter PlotNo"
-          type="text"
-          onChange={(e)=>handleChange(e,'Plotno')}
-          value={data.Plotno}
+          type="number"
+          /* onChange={(e)=>handleChange(e,'Plotno')}
+          value={data.Plotno} */
+          value={formvalues.Plotno}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -215,8 +257,10 @@ value={data.Mbno}
           name="street"
           placeholder="street"
           type="text"
-          onChange={(e)=>handleChange(e,'street')}
-          value={data.street}
+          /* onChange={(e)=>handleChange(e,'street')}
+          value={data.street} */
+          value={formvalues.street}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -230,8 +274,10 @@ value={data.Mbno}
           name="landmark"
           placeholder=" Enter landmark"
           type="text"
-          onChange={(e)=>handleChange(e,'landmark')}
-          value={data.landmark}
+          /* onChange={(e)=>handleChange(e,'landmark')}
+          value={data.landmark} */
+          value={formvalues.landmark}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -249,8 +295,10 @@ value={data.Mbno}
           name="city"
           placeholder=" Enter City"
           type="text"
-          onChange={(e)=>handleChange(e,'city')}
-          value={data.city}
+          /* onChange={(e)=>handleChange(e,'city')}
+          value={data.city} */
+          value={formvalues.city}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -264,8 +312,10 @@ value={data.Mbno}
           name="state"
           placeholder="Enter state"
           type="text"
-          onChange={(e)=>handleChange(e,'state')}
-          value={data.state}
+          /* onChange={(e)=>handleChange(e,'state')}
+          value={data.state} */
+          value={formvalues.state}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -278,9 +328,11 @@ value={data.Mbno}
           id="pin"
           name="pin"
           placeholder=" Enter Pin"
-          type="text"
-          onChange={(e)=>handleChange(e,'pin')}
-          value={data.pin}
+          type="number"
+          /* onChange={(e)=>handleChange(e,'pin')}
+          value={data.pin} */
+          value={formvalues.pin}
+          onChange={handleChange}
         />
       </FormGroup>
     </Col>
@@ -288,13 +340,15 @@ value={data.Mbno}
 
       {/*------------------------------------------------------------------------------------------------------- */}
 
-      <Container className="text-center">
+    {/* <Container className="text-center"> */}
 
 <Button color="dark">Register</Button>
-<Button onClick={resetData}   color="secondary" type="reset" className="ms-2">Reset</Button>
+<Button 
+//onClick={resetData}  
+ color="secondary" type="reset" className="ms-2">Reset</Button>
 
 
-      </Container>
+      {/* </Container>  */}
 
 </Form>
 </CardBody>

@@ -4,18 +4,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Demo from './components/Demo';
 
 
 
 function App() {
-    return ( <
-        >
+    return ( 
+        <>
 
-        <
-        Signup / >
+        <Signup / >
 
-        <
-        />
+        </>
     );
 }
 
