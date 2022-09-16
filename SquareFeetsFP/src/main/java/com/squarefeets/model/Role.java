@@ -19,6 +19,7 @@ public class Role implements Serializable {
     @NaturalId
     @Column(length = 60)
     private RoleName name;
+    
 
     public Role() {
     }

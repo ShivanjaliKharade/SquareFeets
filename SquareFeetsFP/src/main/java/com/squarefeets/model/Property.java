@@ -1,10 +1,12 @@
 package com.squarefeets.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,13 +15,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Table(name = "Property")
-public @Data class Property {
+public @Data class Property implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +31,7 @@ public @Data class Property {
 	private int propertyId;
 	
 	@Column(name = "property_name")
-	private String property_name;
+	private String propertyName;
 	
 	@Column(name = "details")
 	private String details;
@@ -36,10 +40,10 @@ public @Data class Property {
 	private int price;
 	
 	@Column(name = "construction_status")
-	private String construction_status;
+	private String constructionStatus;
 	
 	@Column(name = "RERA_reg")
-	private String rERA_reg;
+	private String reraReg;
 	
 	@Column(name = "area")
 	private String area;
@@ -51,12 +55,20 @@ public @Data class Property {
     @JoinColumn(name = "address_id")
     private Address address;
     
+<<<<<<< Updated upstream
+	
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private User user;
+=======
 	/*
     @ManyToOne
-    @JoinColumn(name = "user_details_id")
-    private User_Details userDetails;
+    @JoinColumn(name = "user_id")
+    private User User;
     
+>>>>>>> Stashed changes
     
+    /*
     @ManyToOne
     @JoinColumn(name = "property_type_id")
     private Property_Type propertyType;
@@ -77,14 +89,14 @@ public @Data class Property {
     */
     
 
-	public Property(String property_name, String details, int price, String construction_status, String rERA_reg,
+	public Property(String propertyName, String details, int price, String constructionStatus, String reraReg,
 			String area, String rooms) {
 		super();
-		this.property_name = property_name;
+		this.propertyName = propertyName;
 		this.details = details;
 		this.price = price;
-		this.construction_status = construction_status;
-		this.rERA_reg = rERA_reg;
+		this.constructionStatus = constructionStatus;
+		this.reraReg = reraReg;
 		this.area = area;
 		this.rooms = rooms;
 	}
