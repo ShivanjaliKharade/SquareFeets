@@ -71,23 +71,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                    .logout()
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .and()
 //                    .logout(logout -> logout
 //                            .logoutUrl("/api/auth/signout")
 //                            .addLogoutHandler(new SecurityContextLogoutHandler()).invalidateHttpSession(true))
-                    .sessionManagement()
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
-                    .authorizeRequests()
-                        .antMatchers("/api/auth/**", "/test", "/session/**")
-                            .permitAll()
-                        .antMatchers("/api/**")
-                            .permitAll()
-                        .anyRequest()
-                            .authenticated();
+                .authorizeRequests()
+                .antMatchers("/api/auth/**", "/test", "api/session/**")
+                .permitAll()
+                .antMatchers("/api/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

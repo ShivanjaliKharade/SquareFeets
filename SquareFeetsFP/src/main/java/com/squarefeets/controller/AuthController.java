@@ -15,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.session.SessionRepository;
+import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -67,7 +69,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String username = loginRequest.getUsernameOrEmail();
-        System.out.println(username);
+        //System.out.println(username);
         String jwt = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username));
     }
@@ -168,10 +170,8 @@ public class AuthController {
 
     @PostMapping("/signout")
     public ResponseEntity<?> signout(HttpServletRequest request) {
-        System.out.println(request.getSession().getAttribute("usernameOrEmail"));
         request.getSession().invalidate();
         SecurityContextHolder.clearContext();
-
         return new ResponseEntity<>("Logout Successfull", HttpStatus.OK);
     }
 
