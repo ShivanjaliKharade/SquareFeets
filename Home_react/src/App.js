@@ -4,19 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-
+import "bootstrap/dist/css/bootstrap.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-    return ( <
-        >
-
-        <
-        Signup / >
-
-        <
-        />
-    );
+    return ( 
+    <>
+        <Signup / >
+    </>
+    )
 }
 
 export default App;
