@@ -4,28 +4,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Header from './components/Header';
-import Howitworks from './components/Howitworks'
-import About from './components/About';
-import Properties from './components/Properties';
-import Contact from './components/Contact';
-
-
-
+import "bootstrap/dist/css/bootstrap.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
     return ( 
-        <>
-         <Header/>
-         <Howitworks/>
-         <About/>
-         <Properties/>
-         <Contact/>
-         
-        </>
-        
-    );
+    <>
+        <Signup / >
+    </>
+    )
+
 }
 
 export default App;

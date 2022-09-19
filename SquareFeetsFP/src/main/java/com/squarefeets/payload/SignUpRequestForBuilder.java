@@ -28,8 +28,8 @@ public class SignUpRequestForBuilder {
     @NotBlank
     private String builderLicense;
 
-    @NotBlank
-    private String approvalStatus;
+//    @NotBlank
+//    private String approvalStatus;
 
     @NotBlank
     private String plotNo;
@@ -59,7 +59,7 @@ public class SignUpRequestForBuilder {
         this.aadharNo = aadharNo;
         this.email = email;
         this.builderLicense = builderLicense;
-        this.approvalStatus = approvalStatus;
+//        this.approvalStatus = approvalStatus;
         this.plotNo = plotNo;
         this.street = street;
         this.landmark = landmark;
@@ -108,13 +108,13 @@ public class SignUpRequestForBuilder {
         this.builderLicense = builderLicense;
     }
 
-    public String getApprovalStatus() {
-        return approvalStatus;
-    }
-
-    public void setApprovalStatus(String approvalStatus) {
-        this.approvalStatus = approvalStatus;
-    }
+//    public String getApprovalStatus() {
+//        return approvalStatus;
+//    }
+//
+//    public void setApprovalStatus(String approvalStatus) {
+//        this.approvalStatus = approvalStatus;
+//    }
 
     public String getEmail() {
         return email;
