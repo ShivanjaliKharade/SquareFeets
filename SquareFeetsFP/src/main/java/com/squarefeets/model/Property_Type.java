@@ -28,15 +28,10 @@ public @Data class Property_Type {
 	@Column(name = "property_type")
 	private String propertyType;
 	
-	
-	@OneToMany(mappedBy = "propertyType", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
-    List<Property> property;
-    
 
 	public Property_Type(String propertyType) {
 		super();
 		this.propertyType = propertyType;
 	}
-	
 	
 }
