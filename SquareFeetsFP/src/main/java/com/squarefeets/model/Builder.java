@@ -28,8 +28,8 @@ public @Data class Builder implements Serializable {
     private String approvalStatus;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_details_id")
-    private User userDetails;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     
 

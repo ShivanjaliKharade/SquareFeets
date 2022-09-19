@@ -54,10 +54,8 @@ public @Data class User extends DateAudit implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Builder builder;
-<<<<<<< Updated upstream
-    
-    
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+ 
+	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Property> property;
 	
 	/*
@@ -72,10 +70,7 @@ public @Data class User extends DateAudit implements Serializable {
     */
 
   
-=======
 
-
->>>>>>> Stashed changes
     public User(Long id, String username, String password, String email, String mobileNo, String aadharNo, Set<Role> roles, Address address, Builder builder) {
         this.id = id;
         this.username = username;

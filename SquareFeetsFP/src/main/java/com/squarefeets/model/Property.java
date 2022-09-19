@@ -55,24 +55,18 @@ public @Data class Property implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
     
-<<<<<<< Updated upstream
-	
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id")
     private User user;
-=======
-	/*
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User User;
     
->>>>>>> Stashed changes
     
-    /*
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "property_type_id")
     private Property_Type propertyType;
-	
+    
+	/*
 	@OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
     List<Property> property;
     
