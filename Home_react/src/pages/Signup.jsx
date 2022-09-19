@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardBody,
@@ -11,9 +12,12 @@ import {
   Col,
   Button,
 } from "reactstrap";
+
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { signup } from "../services/Builder-service";
+import {toast} from 'react-toastify'
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -306,6 +310,7 @@ const Signup = () => {
         </Row>
 
         {/* <h1 style={{border:'1px solid red'}}>Signup user</h1> */}
+
       </Container>
     </>
   );
