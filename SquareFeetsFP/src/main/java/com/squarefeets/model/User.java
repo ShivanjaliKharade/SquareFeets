@@ -56,7 +56,6 @@ public class User extends DateAudit implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Builder builder;
  
-    
 	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Property> property;
 	
