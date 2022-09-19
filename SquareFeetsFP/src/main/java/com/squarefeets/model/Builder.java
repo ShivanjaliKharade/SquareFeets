@@ -33,9 +33,13 @@ public @Data class Builder implements Serializable {
 
     
 
-    public Builder(String builderLicense, String approvalStatus) {
+//    public Builder(String builderLicense, String approvalStatus) {
+//        this.builderLicense = builderLicense;
+//        this.approvalStatus = approvalStatus;
+//    }
+
+    public Builder(String builderLicense) {
         this.builderLicense = builderLicense;
-        this.approvalStatus = approvalStatus;
     }
 
     

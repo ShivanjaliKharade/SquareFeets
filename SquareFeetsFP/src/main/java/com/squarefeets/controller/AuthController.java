@@ -15,15 +15,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.session.SessionRepository;
+import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -62,10 +63,21 @@ public class AuthController {
         }
         usernameOrEmail.add(loginRequest.getUsernameOrEmail());
         request.getSession().setAttribute("usernameOrEmail", usernameOrEmail);
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getUsernameOrEmail());
+
+        User user = optionalUser.get();
+        Set<Role> roles = user.getRoles();
+
+        List<Role> listOfRoles = new ArrayList<>(roles);
+        System.out.println(listOfRoles.get(0).getName().toString());
+        String isBuilder = listOfRoles.get(0).getName().toString();
+        String username = loginRequest.getUsernameOrEmail();
+        //System.out.println(username);
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username, isBuilder));
     }
 
     @PostMapping("/signup/customer")
@@ -140,8 +152,9 @@ public class AuthController {
                 signUpRequestForBuilder.getState(),
                 Integer.parseInt(signUpRequestForBuilder.getPincode()));
 
-        Builder builder = new Builder(signUpRequestForBuilder.getBuilderLicense(),
-                signUpRequestForBuilder.getApprovalStatus());
+        Builder builder = new Builder(signUpRequestForBuilder.getBuilderLicense());
+
+        builder.setApprovalStatus("Not Approved");
 
         user.setAddress(address);
         user.setBuilder(builder);
@@ -163,9 +176,9 @@ public class AuthController {
 
     @PostMapping("/signout")
     public ResponseEntity<?> signout(HttpServletRequest request) {
-        System.out.println(request.getSession().getAttribute("usernameOrEmail"));
         request.getSession().invalidate();
-
+        SecurityContextHolder.clearContext();
         return new ResponseEntity<>("Logout Successfull", HttpStatus.OK);
     }
+
 }
