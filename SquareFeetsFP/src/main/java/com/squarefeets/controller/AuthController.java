@@ -24,9 +24,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -68,10 +66,18 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        Optional<User> optionalUser = userRepository.findByEmail(loginRequest.getUsernameOrEmail());
+
+        User user = optionalUser.get();
+        Set<Role> roles = user.getRoles();
+
+        List<Role> listOfRoles = new ArrayList<>(roles);
+        System.out.println(listOfRoles.get(0).getName().toString());
+        String isBuilder = listOfRoles.get(0).getName().toString();
         String username = loginRequest.getUsernameOrEmail();
         //System.out.println(username);
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username, isBuilder));
     }
 
     @PostMapping("/signup/customer")
