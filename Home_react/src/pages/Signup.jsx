@@ -1,8 +1,10 @@
-import { Card, CardBody, CardHeader, Container,Form, FormGroup, Input, Label,Row,Col, Button } from "reactstrap";
+import { Card, CardBody, CardHeader, Container,Form, FormGroup, Input, Label,Row,Col, Button, FormFeedback } from "reactstrap";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 //import { object } from "yup";
+import { signup } from "../services/Builder-service";
+import {toast} from 'react-toastify'
 
 
 const Signup=()=>
@@ -110,6 +112,55 @@ setFormValues ({...setFormValues, [name]: value});
     }
     return errors;
   };
+const submitForm=(event)=>{
+  event.preventDefault();// for stop default behaviour of form otherwise it will be reload and submit the form
+
+ /*   if(error.isError){
+    toast.error("Form data is invalid, correct all details then submit.");
+    setError({...error,isError:false})
+    return;
+  }  */
+
+
+console.log(data);
+
+
+  //if data validate
+           
+          
+  //call server api for  sending data
+  signup(data).then((resp)=>{
+
+    console.log(resp);
+    console.log("sucess log");
+    toast.success("Builder is Registered Sucessfully!")
+    setData({
+      name:'',
+      email:'',
+      password:'',
+      Mbno:'',
+      LiscenceNo:'',
+      AadharNo:'',
+      Plotno:'',
+      street:'',
+      landmark:'',
+      city:'',
+      state:'',
+      pin:'',
+
+
+    });
+  }).catch((error)=>{
+     console.log(error)
+     console.log("error log");
+     //hanlde error in proper way
+
+     setError({
+      errors:error,
+      isError:true
+     })
+
+  })
 
 return(
 
@@ -149,6 +200,13 @@ value={data.name} */
 value={formvalues.name}
 onChange={handleChange}
 />
+onChange={(e)=>handleChange(e,'name')}
+value={data.name}
+invalid={error.errors?.response?.data?.name ? true: false}
+<FormFeedback>
+  {error.errors?.response?.data?.name ? true: false}
+</FormFeedback>
+
 </FormGroup>
 <p>{formerrors.name}</p>
 
@@ -163,7 +221,13 @@ id="Mbno"
 value={data.Mbno} */
 value={formvalues.Mbno}
 onChange={handleChange}
+onChange={(e)=>handleChange(e,'Mbno')}
+value={data.Mbno}
+
 />
+
+
+
 
 </FormGroup>
 <p>{formerrors.Mbno}</p>
@@ -209,6 +273,26 @@ onChange={handleChange}
 {/*------------------------------------------------------------------------------------------------------- */}
 
 
+
+<FormGroup>
+<Label for="name"> <h5>Enter Email </h5></Label>
+
+<Input
+type="email"
+placeholder="Enter email"
+onChange={(e)=>handleChange(e,'email')}
+value={data.email}
+invalid={error.errors?.response?.data?.email ? true: false}
+
+/>
+
+<FormFeedback>
+  {error.errors?.response?.data?.email ? true: false}
+</FormFeedback>
+
+</FormGroup>
+
+
 <FormGroup>
     <Label for="examplePassword">
     <h5>Enter password </h5>
@@ -222,7 +306,14 @@ onChange={handleChange}
       value={data.password} */
       value={formvalues.password}
       onChange={handleChange}
+      onChange={(e)=>handleChange(e,'password')}
+      value={data.password}
+      invalid={error.errors?.response?.data?.password ? true: false}
     />
+
+<FormFeedback>
+  {error.errors?.response?.data?.password ? true: false}
+</FormFeedback>
   </FormGroup>
   <p>{formerrors.password}</p>
 
