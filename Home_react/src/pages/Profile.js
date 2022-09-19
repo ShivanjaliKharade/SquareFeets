@@ -53,13 +53,13 @@ export default function Profile() {
 
     const [typeFilter, setTypeFilter] = useState([2, 3, 1]);
 
-    return(
+    return (
         <Container>
-            <Row>
+            {/* <Row>
                 <Mynavbar />
-            </Row>
+            </Row> */}
             <Row>
-                <Col xs={3} style={{padding: "8px"}}>
+                <Col xs={3} style={{ padding: "8px" }}>
                     <ProfileCard />
                 </Col>
                 <Col>
@@ -68,9 +68,9 @@ export default function Profile() {
                     </Row>
                     <Row>
                         {
-                            data.filter(el => typeFilter.includes(el.type)).map((property)=>{
-                                return(
-                                    <Col xs={12} sm={6} md={3} lg={3} style={{padding: "8px"}}>
+                            data.filter(el => typeFilter.includes(el.type)).map((property) => {
+                                return (
+                                    <Col xs={12} sm={6} md={3} lg={3} style={{ padding: "8px" }}>
                                         <PropertyCard prop={property} />
                                     </Col>
                                 )
