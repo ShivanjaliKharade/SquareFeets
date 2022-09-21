@@ -52,11 +52,11 @@ public class Property implements Serializable {
 	@Column(name = "rooms")
 	private String rooms;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
-    
-    @ManyToOne
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id")
     private User user;
     
