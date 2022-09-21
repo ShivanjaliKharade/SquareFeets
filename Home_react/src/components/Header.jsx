@@ -1,16 +1,24 @@
 import React from 'react'
-import Home from './Home';
+import Nav from './Nav';
 
 function Header() {
   return (
     <div className='header'>
-        <Home/>
+        <Nav/>
         <div className='intro'>
-            <p>Looking fora Property !</p>
-            <h1><span>Buy</span>and<span>Sell</span>Properties</h1>
-            <p className='details'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Consequuntur asperiores quas et ipsum ullam, provident repellendus laboriosam 
-            accusantium voluptatum minima recusandae ut praesentium deserunt sit debitis itaque iusto. Voluptate, quos.</p>
+            <p>Looking for a Property..?</p>
+            
+            <h1><span>Buy</span> and <span>Sell</span> Properties</h1>
+            <hr></hr>
+            <p className='details'>
+              Real Estate Property Portal 
+            where Buyers and Builders can exchange information about properties quickly,  
+            effectively and inexpensively at one place.
+            Now customers will not have to go to the agents personally they
+            can search for their desired home or apartment which
+            suits their pocket. 
+            </p>
+            
             <a href='#' className='header-btn'>Details</a>
         </div>
     </div>
