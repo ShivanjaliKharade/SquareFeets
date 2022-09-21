@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../images/logo1.png';
-function Home(){
+const Nav = () => {
+    const navStyles = {
+        position: 'fixed',
+        height: '60px',
+        width: '100%',
+        backgroundColor: 'grey',
+        textAlign: 'center'
+      }
     return (
-        <div>
-        <nav>
+        <div style={{ ...navStyles }}>
+        <nav sticky="top" >
+
             <a href='#' className='logo'>
                 <img src={logo} alt='logo'/>
             </a>
@@ -16,11 +24,11 @@ function Home(){
                 <li><a href='#' className='active'>Home</a></li>
                 <li><a href='#'>About</a></li>
                 <li><a href='#'>Contact</a></li>
-                <li><a href='#'>Proerty</a></li>
+                <li><a href='#'>Property</a></li>
             </ul>
             <a href='#' className='property'>Properties</a>
         </nav>
         </div>
         )
 }
-export default Home;
+export default Nav;
