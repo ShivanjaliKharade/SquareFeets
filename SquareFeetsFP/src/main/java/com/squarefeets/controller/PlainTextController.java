@@ -28,5 +28,11 @@ public class PlainTextController {
     public String onlyForBuilder(){
         return "Only for Builder";
     }
+    
+    @RequestMapping(value = "/add-builder-property", method = RequestMethod.GET)
+    @RolesAllowed("ROLE_BUILDER")
+    public String addBuilderProperty(){
+        return "Add Builder Property";
+    }
 
 }

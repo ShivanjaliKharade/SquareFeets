@@ -19,6 +19,7 @@ public class Role implements Serializable {
     @NaturalId
     @Column(length = 60)
     private RoleName name;
+    
 
     public Role() {
     }
@@ -42,5 +43,13 @@ public class Role implements Serializable {
 
     public void setName(RoleName name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name=" + name +
+                '}';
     }
 }

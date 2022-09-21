@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+
 import Header from './components/Header';
 import Howitworks from './components/Howitworks'
 import About from './components/About';
@@ -14,8 +15,9 @@ import Footer from './components/Footer';
 
 
 
+
 function App() {
-    return ( 
+    return (
         <>
     
          <Header/>
@@ -25,9 +27,10 @@ function App() {
          <Footer/>
          
          
+
         </>
-        
-    );
+    )
+
 }
 
 export default App;
