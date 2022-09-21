@@ -61,7 +61,11 @@ public @Data class AddPropertyForBuilder {
     private String pincode;
     
     @NotBlank
+<<<<<<< Updated upstream
     private String useremail;
+=======
+    private String email;
+>>>>>>> Stashed changes
     
     @NotBlank
     private String propertyTypeId;
