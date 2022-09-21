@@ -6,13 +6,14 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import "bootstrap/dist/css/bootstrap.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Profile from './pages/Profile';
 
 
 function App() {
-    return ( 
-    <>
-        <Signup / >
-    </>
+    return (
+        <>
+            <Profile />
+        </>
     )
 
 }
