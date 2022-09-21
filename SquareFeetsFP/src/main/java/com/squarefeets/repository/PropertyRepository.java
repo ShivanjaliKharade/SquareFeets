@@ -10,6 +10,5 @@ import com.squarefeets.model.Property;
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 	
 	public Property findById(int propertyId);
-	
-	
+
 }

@@ -61,9 +61,9 @@ public @Data class AddPropertyForBuilder {
     private String pincode;
     
     @NotBlank
-    private Long id;
+    private String useremail;
     
     @NotBlank
-    private int propertyTypeId;   
+    private String propertyTypeId;
     
 }
