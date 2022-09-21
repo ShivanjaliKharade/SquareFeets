@@ -28,10 +28,6 @@ public @Data class Property_Images {
 	@Column(name = "img_description")
 	private String imgDescription;
 	
-	@ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
-
 	public Property_Images(String imageName, String imgDescription) {
 		super();
 		this.imageName = imageName;

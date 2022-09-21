@@ -30,14 +30,6 @@ public @Data class Appointment {
 	@Column(name = "appointment_status")
 	private String appointmentStatus;
 	
-	@ManyToOne
-    @JoinColumn(name = "user_details_id")
-    private User user;
-	
-	@ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
-
 	public Appointment(LocalDateTime dateTime, String appointmentStatus) {
 		super();
 		this.dateTime = dateTime;

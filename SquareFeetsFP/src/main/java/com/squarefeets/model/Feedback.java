@@ -27,14 +27,6 @@ public @Data class Feedback {
 	
 	@Column(name = "comments")
 	private String comments;
-	
-	@ManyToOne
-    @JoinColumn(name = "user_details_id")
-    private User user;
-	
-	@ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
 
 	public Feedback(int rating, String comments) {
 		super();

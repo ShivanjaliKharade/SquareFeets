@@ -55,8 +55,13 @@ public class Property implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
+<<<<<<< Updated upstream
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+=======
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+>>>>>>> Stashed changes
     @JoinColumn(name = "id")
     private User user;
     
@@ -67,7 +72,7 @@ public class Property implements Serializable {
     
 	/*
 	@OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
-    List<Property> property;
+    List<Appointment> appointment;
     
     @OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
     List<Feedback> property_id;
