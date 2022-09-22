@@ -75,9 +75,10 @@ public class AuthController {
         System.out.println(listOfRoles.get(0).getName().toString());
         String isBuilder = listOfRoles.get(0).getName().toString();
         String username = loginRequest.getUsernameOrEmail();
+        Long userId = user.getId();
         //System.out.println(username);
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username, isBuilder));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, username, isBuilder, userId));
     }
 
     @PostMapping("/signup/customer")

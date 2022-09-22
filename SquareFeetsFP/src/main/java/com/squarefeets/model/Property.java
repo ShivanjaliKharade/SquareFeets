@@ -88,8 +88,12 @@ public class Property implements Serializable {
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Property_Images> propertyImages;
     
-  
-
+    
+    @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.LAZY)
+    @JoinColumn(name = "builder_id")
+    private Builder builder;
+     
+    
 	public Property(String propertyName, String details, int price, String constructionStatus, String reraReg,
 			String area, String rooms) {
 		super();
@@ -190,6 +194,48 @@ public class Property implements Serializable {
 	public void setPropertyType(Property_Type propertyType) {
 		this.propertyType = propertyType;
 	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
+	}
+
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
+	}
+
+	public List<Payment_Gateway> getPaymentGateway() {
+		return paymentGateway;
+	}
+
+	public void setPaymentGateway(List<Payment_Gateway> paymentGateway) {
+		this.paymentGateway = paymentGateway;
+	}
+
+	public List<Property_Images> getPropertyImages() {
+		return propertyImages;
+	}
+
+	public void setPropertyImages(List<Property_Images> propertyImages) {
+		this.propertyImages = propertyImages;
+	}
+	
+	/*
+
+	public Builder getBuilder() {
+		return builder;
+	}
+
+	public void setBuilder(Builder builder) {
+		this.builder = builder;
+	}
     
-    
+    */
 }

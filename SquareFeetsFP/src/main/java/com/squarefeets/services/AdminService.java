@@ -49,7 +49,7 @@ public class AdminService {
 	
 	//update approval status of builder
 	public void getBuilderApprovalStatus(User user) {
-		// TODO Auto-generated method stub
+		
 		user.getBuilder().setApprovalStatus("Approved");
 		userRepository.save(user);
 	}
