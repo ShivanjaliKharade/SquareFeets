@@ -72,7 +72,7 @@ public class PropertyController {
 
 	//add property
 	@PostMapping("/addProperty/builder")
-	public ResponseEntity<Property>addProperty(@RequestBody AddPropertyForBuilder addPropertyForBuilder){
+	public ResponseEntity<Property> addProperty(@RequestBody AddPropertyForBuilder addPropertyForBuilder){
 		Property property = null;
 		try {
 			property = propertyService.getPropertyFromPayload(addPropertyForBuilder);
@@ -82,6 +82,13 @@ public class PropertyController {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+
+	@GetMapping("getProperty/{builderName:[a-zA-Z &+-]*}")
+	public ResponseEntity<List<Property>> getPropertyListByBuilderName(@PathVariable("builderName") String builderName){
+		List<Property> listOfProperty = propertyService.getPropertyByBuilderName(builderName);
+		System.out.println(listOfProperty);
+		return new ResponseEntity<>(listOfProperty, HttpStatus.OK);
 	}
 	
 	
