@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.squarefeets.model.Property;
 
-public interface PropertyRepository extends JpaRepository<Property, Integer> {
+public interface PropertyRepository extends JpaRepository<Property, String> {
 	
-	public Property findById(int propertyId);
+	public Property findByPropertyName(String propertyName);
+
 
 }

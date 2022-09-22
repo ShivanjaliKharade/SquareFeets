@@ -44,12 +44,25 @@ public class PropertyService {
 			return propertylist;
 		}
 
-		//get Property by Id
-		public Property getPropertyById(int propertyId) {
-			// TODO Auto-generated method stub
+		
+//		//get Property by Id
+//		public Property getPropertyById(int propertyId) {
+//			// TODO Auto-generated method stub
+//			Property property = null;
+//			try {
+//				property = this.propertyRepository.findById(propertyId);
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			return property;
+//		}
+		
+		
+		//get property by name
+		public Property getPropertyByName(String propertyName) {
 			Property property = null;
 			try {
-				property = this.propertyRepository.findById(propertyId);
+				property = this.propertyRepository.findByPropertyName(propertyName);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -89,5 +102,13 @@ public class PropertyService {
 
 			return property;
 		}
+		
+		
+		
+		//delete property
+		public void deleteProperty(Property propertyName) {
+			propertyRepository.delete(propertyName);
+		}
+	
 	
 }

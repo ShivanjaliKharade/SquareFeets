@@ -4,15 +4,30 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import "bootstrap/dist/css/bootstrap.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Profile from './pages/Profile';
+
+import Header from './components/Header';
+import Howitworks from './components/Howitworks'
+import About from './components/About';
+import Properties from './components/Properties';
+import Footer from './components/Footer';
+
+
+
+
 
 
 function App() {
     return (
         <>
-            <Profile />
+    
+         <Header/>
+         <Howitworks/>
+         <About/>
+         <Properties/>
+         <Footer/>
+         
+         
+
         </>
     )
 

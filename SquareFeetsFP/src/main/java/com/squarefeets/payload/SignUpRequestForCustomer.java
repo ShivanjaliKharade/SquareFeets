@@ -5,47 +5,47 @@ import javax.validation.constraints.Size;
 
 public class SignUpRequestForCustomer {
 
-    @NotBlank
+    @NotBlank(message = "Please Enter username")
     @Size(min = 3, max = 15)
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter password")
     @Size(min = 6, max = 20)
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter mobileNo")
     @Size(max = 10, min = 10)
     private String mobileNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter aadharNo")
     @Size(max = 12, min = 12)
     private String aadharNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter email")
     @Size(max = 40)
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter plotNo")
     @Size(max = 40)
     private String plotNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter street")
     @Size(max = 40)
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter landmark")
     @Size(max = 40)
     private String landmark;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter city")
     @Size(max = 40)
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter state")
     @Size(max = 40)
     private String state;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter pincode")
     @Size(max = 40)
     private String pincode;
 

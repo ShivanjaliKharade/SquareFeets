@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,7 +24,12 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "Property")
+@Table(name = "Property", uniqueConstraints = {
+        
+        @UniqueConstraint(columnNames = {
+                "RERA_reg"
+        })
+})
 public class Property implements Serializable {
 
 	@Id
@@ -56,7 +62,8 @@ public class Property implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id")
     private User user;
     
@@ -65,26 +72,23 @@ public class Property implements Serializable {
     @JoinColumn(name = "property_type_id")
     private Property_Type propertyType;
     
-	/*
-	@OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
-    List<Property> property;
+	
+	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    List<Appointment> appointment;
     
-    @OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
-    List<Feedback> property_id;
+	
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    List<Feedback> feedback;
     
     
-    @OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Payment_Gateway> paymentGateway;
     
     
-    @OneToMany(mappedBy = "property_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Property_Images> propertyImages;
-    */
     
-    
-    
-    
-    
+  
 
 	public Property(String propertyName, String details, int price, String constructionStatus, String reraReg,
 			String area, String rooms) {
