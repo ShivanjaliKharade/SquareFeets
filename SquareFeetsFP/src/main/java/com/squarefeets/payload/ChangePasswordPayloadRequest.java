@@ -10,14 +10,10 @@ public class ChangePasswordPayloadRequest {
     private String usernameOrEmail;
 
     @NotBlank
-    private String oldPassword;
-
-    @NotBlank
     private String newPassword;
 
-    public ChangePasswordPayloadRequest(String usernameOrEmail, String oldPassword, String newPassword) {
+    public ChangePasswordPayloadRequest(String usernameOrEmail, String newPassword) {
         this.usernameOrEmail = usernameOrEmail;
-        this.oldPassword = oldPassword;
         this.newPassword = newPassword;
     }
 
@@ -27,14 +23,6 @@ public class ChangePasswordPayloadRequest {
 
     public void setUsernameOrEmail(String usernameOrEmail) {
         this.usernameOrEmail = usernameOrEmail;
-    }
-
-    public String getOldPassword() {
-        return oldPassword;
-    }
-
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
     }
 
     public String getNewPassword() {
