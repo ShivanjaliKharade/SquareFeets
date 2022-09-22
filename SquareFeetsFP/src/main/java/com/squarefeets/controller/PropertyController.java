@@ -70,19 +70,5 @@ public class PropertyController {
 //
 //	}
 
-	//add property
-	@PostMapping("/addProperty/builder")
-	public ResponseEntity<Property>addProperty(@RequestBody AddPropertyForBuilder addPropertyForBuilder){
-		Property property = null;
-		try {
-			property = propertyService.getPropertyFromPayload(addPropertyForBuilder);
-			return ResponseEntity.status(HttpStatus.CREATED).build();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
-	
 	
 }

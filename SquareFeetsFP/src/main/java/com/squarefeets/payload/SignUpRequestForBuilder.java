@@ -28,27 +28,34 @@ public class SignUpRequestForBuilder {
     private String aadharNo;
 
     @NotBlank(message = "Please Enter Builder License")
+    @Size(min = 0, max = 15)
     private String builderLicense;
 
 //    @NotBlank
 //    private String approvalStatus;
 
     @NotBlank(message = "Please Enter plotNo")
+    @Size(min = 0, max = 15)
     private String plotNo;
 
     @NotBlank(message = "Please Enter street")
+    @Size(min = 3, max = 15)
     private String street;
 
     @NotBlank(message = "Please Enter landmark")
+    @Size(min = 3, max = 15)
     private String landmark;
 
     @NotBlank(message = "Please Enter city")
+    @Size(min = 3, max = 15)
     private String city;
 
     @NotBlank(message = "Please Enter state")
+    @Size(min = 3, max = 15)
     private String state;
 
     @NotBlank(message = "Please Enter pincode")
+    @Size(min = 6, max = 6)
     private String pincode;
 
     public SignUpRequestForBuilder() {

@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 public @Data class AddPropertyForBuilder {
 	
 	@NotBlank(message = "Please Enter Property Name")
+	@UniqueElements
     @Size(min = 3, max = 15)
 	private String propertyName;
 	
@@ -67,7 +70,6 @@ public @Data class AddPropertyForBuilder {
     @Email
     private String useremail;
 
-    
     @NotBlank(message = "Please select Property Type")
     private String propertyTypeId;
 

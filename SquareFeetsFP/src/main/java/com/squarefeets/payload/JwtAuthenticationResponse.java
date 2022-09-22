@@ -8,11 +8,14 @@ public class JwtAuthenticationResponse {
     private String username;
 
     private String userRole;
+    
+    private Long userId;
 
-    public JwtAuthenticationResponse(String accessToken, String username, String userRole) {
+    public JwtAuthenticationResponse(String accessToken, String username, String userRole, Long userId) {
         this.accessToken = accessToken;
         this.username = username;
         this.userRole = userRole;
+        this.userId =userId;
     }
 
     public String getAccessToken() {
@@ -46,4 +49,14 @@ public class JwtAuthenticationResponse {
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+    
+    
 }
