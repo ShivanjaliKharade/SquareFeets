@@ -59,16 +59,16 @@ public class User extends DateAudit implements Serializable {
 	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Property> property;
 	
-	/*
-	@OneToMany(mappedBy = "user_details_id", cascade = CascadeType.ALL)
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Feedback> feedback;
 	
-	@OneToMany(mappedBy = "user_details_id", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Payment_Gateway> paymentGateway;
 	
-    @OneToMany(mappedBy = "user_details_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Appointment> appointment;
-    */
+    
 
   
 

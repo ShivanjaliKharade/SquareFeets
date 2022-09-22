@@ -2,6 +2,7 @@ package com.squarefeets.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +28,10 @@ public @Data class Property_Images {
 	
 	@Column(name = "img_description")
 	private String imgDescription;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "property_id")
+    private Property property;
 	
 	public Property_Images(String imageName, String imgDescription) {
 		super();

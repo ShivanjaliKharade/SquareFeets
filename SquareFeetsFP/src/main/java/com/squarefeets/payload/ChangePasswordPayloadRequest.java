@@ -1,10 +1,12 @@
 package com.squarefeets.payload;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class ChangePasswordPayloadRequest {
 
     @NotBlank
+    @Email
     private String usernameOrEmail;
 
     @NotBlank
