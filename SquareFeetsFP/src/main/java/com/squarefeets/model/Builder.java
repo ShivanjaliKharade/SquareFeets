@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -31,6 +32,9 @@ public @Data class Builder implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+    
+    @OneToMany(mappedBy = "builder")
+    List<Property> property;
     
 
 //    public Builder(String builderLicense, String approvalStatus) {

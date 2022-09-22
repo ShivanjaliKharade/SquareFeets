@@ -31,7 +31,7 @@ public class PropertyService {
 	private UserRepository userRepository;
 	
 
-	//add property
+	//add property using entity
 	public Property addProperty(Property prop) {
 			
 			Property result = (Property) propertyRepository.save(prop);
@@ -70,6 +70,7 @@ public class PropertyService {
 			return property;
 		}
 		
+		//add property using payload
 		public Property_Type findPropertyTypeById(Integer id){
 			Optional<Property_Type> optionalPropertyType= propertyTypeRepository.findById(id);
 			return optionalPropertyType.get();
