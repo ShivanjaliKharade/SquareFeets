@@ -20,13 +20,13 @@ public class BuilderService {
 	private PropertyRepository propertyRepository;
 
 	//property by builder name
-	
 	public Optional<Builder> getAllPropertiesOfBuilder(Integer builderId) {
 		Optional<Builder> builderPropertyList = this.builderRepository.findById(builderId);
 		return builderPropertyList;
 		
 	}
 
+	//update property by builder
 	public void getBuilderApprovalStatus(Property property, String propertyName) {
 		
 		property.setPropertyName(propertyName);
