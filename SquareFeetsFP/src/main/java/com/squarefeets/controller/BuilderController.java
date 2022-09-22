@@ -1,6 +1,5 @@
 package com.squarefeets.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.squarefeets.model.Builder;
 import com.squarefeets.model.Property;
-import com.squarefeets.model.User;
 import com.squarefeets.payload.AddPropertyForBuilder;
 import com.squarefeets.services.BuilderService;
 import com.squarefeets.services.PropertyService;

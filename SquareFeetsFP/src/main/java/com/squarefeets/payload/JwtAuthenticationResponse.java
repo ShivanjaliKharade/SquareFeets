@@ -10,12 +10,15 @@ public class JwtAuthenticationResponse {
     private String userRole;
     
     private Long userId;
+    
+    private Integer builderId;
 
-    public JwtAuthenticationResponse(String accessToken, String username, String userRole, Long userId) {
+    public JwtAuthenticationResponse(String accessToken, String username, String userRole, Long userId, Integer builderId) {
         this.accessToken = accessToken;
         this.username = username;
         this.userRole = userRole;
         this.userId =userId;
+        this.builderId = builderId;
     }
 
     public String getAccessToken() {
@@ -57,6 +60,15 @@ public class JwtAuthenticationResponse {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+	public Integer getBuilderId() {
+		return builderId;
+	}
+
+	public void setBuilderId(Integer builderId) {
+		this.builderId = builderId;
+	}
     
-    
+	
+	
 }
