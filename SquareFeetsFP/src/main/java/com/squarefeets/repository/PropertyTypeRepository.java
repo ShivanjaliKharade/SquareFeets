@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface PropertyTypeRepository extends JpaRepository<Property_Type, Integer> {
     Optional<Property_Type> findById(Integer integer);
+    
 }

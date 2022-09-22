@@ -1,52 +1,54 @@
 package com.squarefeets.payload;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class SignUpRequestForBuilder {
 
-    @NotBlank
+    @NotBlank(message = "Please Enter username")
     @Size(min = 3, max = 15)
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter password")
     @Size(min = 6, max = 20)
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter email")
     @Size(max = 40)
+    @Email
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Mobile No.")
     @Size(max = 10, min = 10)
     private String mobileNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Aadhar No.")
     @Size(max = 12, min = 12)
     private String aadharNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Builder License")
     private String builderLicense;
 
 //    @NotBlank
 //    private String approvalStatus;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter plotNo")
     private String plotNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter street")
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter landmark")
     private String landmark;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter city")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter state")
     private String state;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter pincode")
     private String pincode;
 
     public SignUpRequestForBuilder() {
