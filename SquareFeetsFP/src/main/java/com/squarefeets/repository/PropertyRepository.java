@@ -12,7 +12,7 @@ public interface PropertyRepository extends JpaRepository<Property, String> {
 	
 	public Property findByPropertyName(String propertyName);
 	
-	
+	Property findByPropertyId(Integer propertyId);
 
 
 }
