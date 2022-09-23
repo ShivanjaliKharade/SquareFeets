@@ -73,5 +73,134 @@ public @Data class AddPropertyForBuilder {
     @NotBlank(message = "Please select Property Type")
     private String propertyTypeId;
 
-    
+    @NotBlank
+    private String builderId;
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getConstructionStatus() {
+        return constructionStatus;
+    }
+
+    public void setConstructionStatus(String constructionStatus) {
+        this.constructionStatus = constructionStatus;
+    }
+
+    public String getReraReg() {
+        return reraReg;
+    }
+
+    public void setReraReg(String reraReg) {
+        this.reraReg = reraReg;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(String rooms) {
+        this.rooms = rooms;
+    }
+
+    public String getPlotNo() {
+        return plotNo;
+    }
+
+    public void setPlotNo(String plotNo) {
+        this.plotNo = plotNo;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getLandmark() {
+        return landmark;
+    }
+
+    public void setLandmark(String landmark) {
+        this.landmark = landmark;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    public String getUseremail() {
+        return useremail;
+    }
+
+    public void setUseremail(String useremail) {
+        this.useremail = useremail;
+    }
+
+    public String getPropertyTypeId() {
+        return propertyTypeId;
+    }
+
+    public void setPropertyTypeId(String propertyTypeId) {
+        this.propertyTypeId = propertyTypeId;
+    }
+
+    public String getBuilderId() {
+        return builderId;
+    }
+
+    public void setBuilderId(String builderId) {
+        this.builderId = builderId;
+    }
 }

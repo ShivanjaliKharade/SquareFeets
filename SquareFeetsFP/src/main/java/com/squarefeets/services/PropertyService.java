@@ -3,17 +3,15 @@ package com.squarefeets.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.squarefeets.model.Address;
-import com.squarefeets.model.Property_Type;
-import com.squarefeets.model.User;
+import com.squarefeets.model.*;
 import com.squarefeets.payload.AddPropertyForBuilder;
+import com.squarefeets.repository.BuilderRepository;
 import com.squarefeets.repository.PropertyTypeRepository;
 import com.squarefeets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.squarefeets.model.Property;
 import com.squarefeets.repository.PropertyRepository;
 
 @Component
@@ -29,6 +27,8 @@ public class PropertyService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private BuilderRepository builderRepository;
 
 	//add property using entity
 	public Property addProperty(Property prop) {
@@ -87,6 +87,10 @@ public class PropertyService {
 			property.setReraReg(addPropertyForBuilder.getReraReg());
 			property.setArea(addPropertyForBuilder.getArea());
 			property.setRooms(addPropertyForBuilder.getRooms());
+
+
+			Builder builder = builderRepository.findById(Integer.parseInt(addPropertyForBuilder.getBuilderId())).get();
+			property.setBuilder(builder);
 
 			address.setPlotNo(Integer.parseInt(addPropertyForBuilder.getPlotNo()));
 			address.setStreet(addPropertyForBuilder.getStreet());
