@@ -3,6 +3,7 @@ package com.squarefeets.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.squarefeets.model.Address;
 import com.squarefeets.model.Property_Type;
 import com.squarefeets.model.User;
@@ -45,29 +46,29 @@ public class PropertyService {
 		}
 
 		
-//		//get Property by Id
-//		public Property getPropertyById(int propertyId) {
-//			// TODO Auto-generated method stub
-//			Property property = null;
-//			try {
-//				property = this.propertyRepository.findById(propertyId);
-//			}catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			return property;
-//		}
-		
-		
-		//get property by name
-		public Property getPropertyByName(String propertyName) {
-			Property property = null;
+		//get Property by Id
+		public Optional<Property> getPropertyById(int propertyId) {
+			// TODO Auto-generated method stub
+			Optional<Property> property = null;
 			try {
-				property = this.propertyRepository.findByPropertyName(propertyName);
+				property = this.propertyRepository.findById(propertyId);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
 			return property;
 		}
+		
+		
+//		//get property by name
+//		public Property getPropertyByName(String propertyName) {
+//			Property property = null;
+//			try {
+//				property = this.propertyRepository.findByPropertyName(propertyName);
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			return property;
+//		}
 		
 		//add property using payload
 		public Property_Type findPropertyTypeById(Integer id){
@@ -110,6 +111,11 @@ public class PropertyService {
 		public void deleteProperty(Property propertyName) {
 			propertyRepository.delete(propertyName);
 		}
-	
+
+		/*
+		public List<Property> getPropertyByBuilderName(String builderName){
+			return propertyRepository.findByUserName(builderName);
+		}
+		*/
 	
 }
