@@ -3,6 +3,7 @@ package com.squarefeets.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.squarefeets.model.Address;
 import com.squarefeets.model.Property_Type;
 import com.squarefeets.model.User;
@@ -110,6 +111,9 @@ public class PropertyService {
 		public void deleteProperty(Property propertyName) {
 			propertyRepository.delete(propertyName);
 		}
-	
+
+		public List<Property> getPropertyByBuilderName(String builderName){
+			return propertyRepository.findByUserName(builderName);
+		}
 	
 }

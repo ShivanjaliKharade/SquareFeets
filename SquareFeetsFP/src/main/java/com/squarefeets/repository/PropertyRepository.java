@@ -14,5 +14,7 @@ public interface PropertyRepository extends JpaRepository<Property, String> {
 	
 	
 
+	List<Property> findByUserName(String builderName);
+
 
 }
