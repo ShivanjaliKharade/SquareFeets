@@ -91,6 +91,7 @@ public class Property implements Serializable {
     
     @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.LAZY)
     @JoinColumn(name = "builder_id")
+	@JsonIgnore
     private Builder builder;
      
     
@@ -226,8 +227,6 @@ public class Property implements Serializable {
 	public void setPropertyImages(List<Property_Images> propertyImages) {
 		this.propertyImages = propertyImages;
 	}
-	
-	/*
 
 	public Builder getBuilder() {
 		return builder;
@@ -236,6 +235,5 @@ public class Property implements Serializable {
 	public void setBuilder(Builder builder) {
 		this.builder = builder;
 	}
-    
-    */
+
 }

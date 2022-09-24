@@ -7,6 +7,7 @@ import com.squarefeets.payload.*;
 import com.squarefeets.repository.RoleRepository;
 import com.squarefeets.repository.UserRepository;
 import com.squarefeets.security.JwtTokenProvider;
+import com.squarefeets.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,9 @@ public class AuthController {
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @Autowired
+    EmailService emailService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request) {
@@ -127,6 +131,10 @@ public class AuthController {
         user.setRoles(Collections.singleton(userRole));
 
         User result = userRepository.save(user);
+
+        if (result != null){
+            emailService.sendEmailForNewRegistration(signUpRequestForCustomer.getEmail());
+        }
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/customer/{username}")
