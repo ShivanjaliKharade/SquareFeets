@@ -41,10 +41,10 @@ public class PropertyController {
 	}
 
 	// get single property handler
-	@GetMapping("/property/{propertyName}")
-	public ResponseEntity<Property> getProperty(@PathVariable("propertyName") String propertyName) {
+	@GetMapping("/property/{propertyId}")
+	public ResponseEntity<Optional<Property>> getProperty(@PathVariable("propertyId") int propertyId) {
 
-		Property property = propertyService.getPropertyByName(propertyName);
+		Optional<Property> property = propertyService.getPropertyById(propertyId);
 		if (property == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
@@ -69,6 +69,7 @@ public class PropertyController {
 	//
 	// }
 
+	/*
 	// add property
 	@PostMapping("/addProperty/builder")
 	public ResponseEntity<Property> addProperty(@RequestBody AddPropertyForBuilder addPropertyForBuilder) {
@@ -81,7 +82,9 @@ public class PropertyController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
+	*/
 
+	/*
 	@GetMapping("getProperty/{builderName:[a-zA-Z &+-]*}")
 	public ResponseEntity<List<Property>> getPropertyListByBuilderName(
 			@PathVariable("builderName") String builderName) {
@@ -89,5 +92,5 @@ public class PropertyController {
 		System.out.println(listOfProperty);
 		return new ResponseEntity<>(listOfProperty, HttpStatus.OK);
 	}
-
+*/
 }

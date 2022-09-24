@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.squarefeets.model.Builder;
 import com.squarefeets.model.Property;
 import com.squarefeets.model.User;
+import com.squarefeets.repository.BuilderRepository;
 import com.squarefeets.repository.PropertyRepository;
 import com.squarefeets.repository.UserRepository;
 
@@ -18,6 +20,9 @@ public class AdminService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BuilderRepository builderRepository;
 
 	//get property list
 	public List<Property> getAllPropertiesList() {
@@ -33,9 +38,8 @@ public class AdminService {
 	
 	
 	//delete Property
-	public void deleteProperty(String propertyName) {
-		Property prop = propertyRepository.findByPropertyName(propertyName);
-		propertyRepository.delete(prop);
+	public void deleteProperty(int propertyId) {
+		propertyRepository.deleteById(propertyId);
 	}
 	
 	/*
@@ -48,10 +52,10 @@ public class AdminService {
 	
 	
 	//update approval status of builder
-	public void getBuilderApprovalStatus(User user) {
+	public void updateApprovalStatus(Builder builder, String approvalStatus) {
 		
-		user.getBuilder().setApprovalStatus("Approved");
-		userRepository.save(user);
+		builder.setApprovalStatus(approvalStatus);
+		builderRepository.save(builder);
 	}
 
 

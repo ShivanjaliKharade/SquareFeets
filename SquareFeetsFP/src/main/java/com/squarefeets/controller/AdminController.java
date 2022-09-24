@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.squarefeets.model.Builder;
 import com.squarefeets.model.Property;
 import com.squarefeets.model.User;
 import com.squarefeets.services.AdminService;
@@ -49,12 +50,12 @@ public class AdminController {
 	}
 	
 	//Update Builder Approval Status
-	@PutMapping("/builderApproval")
-	public ResponseEntity<User>approveBuilder(@RequestBody User user){
+	@PutMapping("/builderApproval/{builderId}")
+	public ResponseEntity<Builder>approveBuilder(@PathVariable("builderId") Builder builderId){
 		
 		try {
-			this.adminService.getBuilderApprovalStatus(user);
-			return ResponseEntity.ok().body(user);
+			this.adminService.updateApprovalStatus(builderId, "Approved");
+			return ResponseEntity.ok().body(builderId);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -63,18 +64,17 @@ public class AdminController {
 	}
 	
 	
-	//Delete Property
-		@DeleteMapping("/removeProperty/{propertyName}")
-		public ResponseEntity<Void>deleteProperty(@PathVariable("propertyName") String propertyName){
-		
-		try {
-			this.adminService.deleteProperty(propertyName);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+	@DeleteMapping("/removeProperty/{propertyId}")
+	public ResponseEntity<Void>deleteProperty(@PathVariable("propertyId") int propertyId){
+	
+	try {
+		this.adminService.deleteProperty(propertyId);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	} catch (Exception e) {
+		e.printStackTrace();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	}
+}
 	
 		/*
 	//Delete Builder
