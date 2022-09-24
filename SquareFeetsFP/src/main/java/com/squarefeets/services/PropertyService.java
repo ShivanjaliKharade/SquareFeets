@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.squarefeets.model.Property;
 import com.squarefeets.repository.PropertyRepository;
 
 @Component
@@ -45,9 +46,21 @@ public class PropertyService {
 		}
 
 		
-//		//get Property by Id
-//		public Property getPropertyById(int propertyId) {
-//			// TODO Auto-generated method stub
+		//get Property by Id
+		public Optional<Property> getPropertyById(int propertyId) {
+			// TODO Auto-generated method stub
+			Optional<Property> property = null;
+			try {
+				property = this.propertyRepository.findById(propertyId);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return property;
+		}
+
+
+//		//get property by name
+//		public Property getPropertyByName(String propertyName) {
 //			Property property = null;
 //			try {
 //				property = this.propertyRepository.findById(propertyId);
@@ -114,6 +127,11 @@ public class PropertyService {
 		public void deleteProperty(Property propertyName) {
 			propertyRepository.delete(propertyName);
 		}
-	
+
+		/*
+		public List<Property> getPropertyByBuilderName(String builderName){
+			return propertyRepository.findByUserName(builderName);
+		}
+		*/
 	
 }

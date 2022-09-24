@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.squarefeets.model.Property;
 import com.squarefeets.services.PropertyService;
 
@@ -29,46 +28,69 @@ public class PropertyController {
 
 	@Autowired
 	private PropertyService propertyService;
-	
-	//get all property handler
+
+	// get all property handler
 	@GetMapping("/property")
-	public ResponseEntity<List<Property>> getProperty(){
+	public ResponseEntity<List<Property>> getProperty() {
 
 		List<Property> propertyList = propertyService.getAllProperties();
-		if(propertyList.size()<=0) {
+		if (propertyList.size() <= 0) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(propertyList);
 	}
 
-	//get single property handler
-	@GetMapping("/property/{propertyName}")
-	public ResponseEntity<Property> getProperty(@PathVariable("propertyName") String propertyName ) {
+	// get single property handler
+	@GetMapping("/property/{propertyId}")
+	public ResponseEntity<Optional<Property>> getProperty(@PathVariable("propertyId") int propertyId) {
 
-		Property property = propertyService.getPropertyByName(propertyName);
-		if(property == null) {
+		Optional<Property> property = propertyService.getPropertyById(propertyId);
+		if (property == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		return ResponseEntity.of(Optional.of(property));
 	}
-		
-	//add property
-//	@PostMapping("/addProperty/builder")
-//	public ResponseEntity<Property>addProperty(@RequestBody Property property){
-//		Property prop = null;
-//
-//		try {
-//			prop = this.propertyService.addProperty(property);
-//			System.out.println(property);
-//			return ResponseEntity.status(HttpStatus.CREATED).build();
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//		}
-//
-//
-//	}
 
-	
+	// add property
+	// @PostMapping("/addProperty/builder")
+	// public ResponseEntity<Property>addProperty(@RequestBody Property property){
+	// Property prop = null;
+	//
+	// try {
+	// prop = this.propertyService.addProperty(property);
+	// System.out.println(property);
+	// return ResponseEntity.status(HttpStatus.CREATED).build();
+	// }
+	// catch (Exception e) {
+	// e.printStackTrace();
+	// return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	// }
+	//
+	//
+	// }
+
+	/*
+	// add property
+	@PostMapping("/addProperty/builder")
+	public ResponseEntity<Property> addProperty(@RequestBody AddPropertyForBuilder addPropertyForBuilder) {
+		Property property = null;
+		try {
+			property = propertyService.getPropertyFromPayload(addPropertyForBuilder);
+			return ResponseEntity.status(HttpStatus.CREATED).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+	*/
+
+	/*
+	@GetMapping("getProperty/{builderName:[a-zA-Z &+-]*}")
+	public ResponseEntity<List<Property>> getPropertyListByBuilderName(
+			@PathVariable("builderName") String builderName) {
+		List<Property> listOfProperty = propertyService.getPropertyByBuilderName(builderName);
+		System.out.println(listOfProperty);
+		return new ResponseEntity<>(listOfProperty, HttpStatus.OK);
+	}
+*/
 }
