@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,14 +29,21 @@ public @Data class Builder implements Serializable {
     private String approvalStatus;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_details_id")
-    private User userDetails;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     
+    @OneToMany(mappedBy = "builder")
+    List<Property> property;
+    
 
-    public Builder(String builderLicense, String approvalStatus) {
+//    public Builder(String builderLicense, String approvalStatus) {
+//        this.builderLicense = builderLicense;
+//        this.approvalStatus = approvalStatus;
+//    }
+
+    public Builder(String builderLicense) {
         this.builderLicense = builderLicense;
-        this.approvalStatus = approvalStatus;
     }
 
     

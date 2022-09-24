@@ -1,52 +1,61 @@
 package com.squarefeets.payload;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class SignUpRequestForBuilder {
 
-    @NotBlank
+    @NotBlank(message = "Please Enter username")
     @Size(min = 3, max = 15)
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter password")
     @Size(min = 6, max = 20)
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter email")
     @Size(max = 40)
+    @Email
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Mobile No.")
     @Size(max = 10, min = 10)
     private String mobileNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Aadhar No.")
     @Size(max = 12, min = 12)
     private String aadharNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter Builder License")
+    @Size(min = 0, max = 15)
     private String builderLicense;
 
-    @NotBlank
-    private String approvalStatus;
+//    @NotBlank
+//    private String approvalStatus;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter plotNo")
+    @Size(min = 0, max = 15)
     private String plotNo;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter street")
+    @Size(min = 3, max = 15)
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter landmark")
+    @Size(min = 3, max = 15)
     private String landmark;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter city")
+    @Size(min = 3, max = 15)
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter state")
+    @Size(min = 3, max = 15)
     private String state;
 
-    @NotBlank
+    @NotBlank(message = "Please Enter pincode")
+    @Size(min = 6, max = 6)
     private String pincode;
 
     public SignUpRequestForBuilder() {
@@ -59,7 +68,7 @@ public class SignUpRequestForBuilder {
         this.aadharNo = aadharNo;
         this.email = email;
         this.builderLicense = builderLicense;
-        this.approvalStatus = approvalStatus;
+//        this.approvalStatus = approvalStatus;
         this.plotNo = plotNo;
         this.street = street;
         this.landmark = landmark;
@@ -108,13 +117,13 @@ public class SignUpRequestForBuilder {
         this.builderLicense = builderLicense;
     }
 
-    public String getApprovalStatus() {
-        return approvalStatus;
-    }
-
-    public void setApprovalStatus(String approvalStatus) {
-        this.approvalStatus = approvalStatus;
-    }
+//    public String getApprovalStatus() {
+//        return approvalStatus;
+//    }
+//
+//    public void setApprovalStatus(String approvalStatus) {
+//        this.approvalStatus = approvalStatus;
+//    }
 
     public String getEmail() {
         return email;
