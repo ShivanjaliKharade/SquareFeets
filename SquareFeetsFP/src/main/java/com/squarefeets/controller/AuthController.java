@@ -197,13 +197,19 @@ public class AuthController {
         return new ResponseEntity<>("Logout Successful", HttpStatus.OK);
     }
 
-    @PutMapping("/changeRequest")
+    @PutMapping("/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordPayloadRequest changePasswordPayloadRequest){
         Optional<User> optionUser = userRepository.findByEmail(changePasswordPayloadRequest.getUsernameOrEmail());
         User user = optionUser.get();
         user.setPassword(passwordEncoder.encode(changePasswordPayloadRequest.getNewPassword()));
-        userRepository.save(user);
+        User updatedUser = userRepository.save(user);
+        System.out.println(changePasswordPayloadRequest.getUsernameOrEmail());
+        if (updatedUser != null){
+            emailService.sendEmailForPasswordReset(changePasswordPayloadRequest.getUsernameOrEmail());
+        }
         return new ResponseEntity(new ApiResponse(true, "Password Changed Successfully"), HttpStatus.OK);
     }
+
+
 
 }
