@@ -73,10 +73,10 @@ public class Property implements Serializable {
     private Property_Type propertyType;
     
 	
-	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "property")
     List<Appointment> appointment;
     
-	
+	/*
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Feedback> feedback;
     
@@ -87,7 +87,7 @@ public class Property implements Serializable {
     
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Property_Images> propertyImages;
-    
+    */
     
     @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.LAZY)
     @JoinColumn(name = "builder_id")
@@ -204,6 +204,7 @@ public class Property implements Serializable {
 		this.appointment = appointment;
 	}
 
+	/*
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
@@ -227,6 +228,7 @@ public class Property implements Serializable {
 	public void setPropertyImages(List<Property_Images> propertyImages) {
 		this.propertyImages = propertyImages;
 	}
+	*/
 
 	public Builder getBuilder() {
 		return builder;
