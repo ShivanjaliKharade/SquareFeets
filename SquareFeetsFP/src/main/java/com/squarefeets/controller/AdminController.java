@@ -65,10 +65,10 @@ public class AdminController {
 	
 	
 	@DeleteMapping("/removeProperty/{propertyId}")
-	public ResponseEntity<Void>deleteProperty(@PathVariable("propertyId") int propertyId){
-	
+	public ResponseEntity<?>deleteProperty(@PathVariable("propertyId") int propertyId){
+	//System.out.println(propertyId);
 	try {
-		this.adminService.deleteProperty(propertyId);
+		adminService.deleteProperty(propertyId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	} catch (Exception e) {
 		e.printStackTrace();

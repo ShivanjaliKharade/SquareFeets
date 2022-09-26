@@ -39,7 +39,8 @@ public class AdminService {
 	
 	//delete Property
 	public void deleteProperty(int propertyId) {
-		propertyRepository.deleteById(propertyId);
+		Property p = propertyRepository.getById(propertyId);
+		propertyRepository.delete(p);
 	}
 	
 	/*
