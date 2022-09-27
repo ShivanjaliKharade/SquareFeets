@@ -1,6 +1,7 @@
 package com.squarefeets.model;
 
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +30,9 @@ public @Data class Appointment {
 	@Column(name = "app_id")
 	private int appId;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "date_time")
-	private LocalDateTime dateTime;
+	private Date dateTime;
 	
 	@Column(name = "appointment_status")
 	private String appointmentStatus;
@@ -42,7 +46,7 @@ public @Data class Appointment {
     @JoinColumn(name = "user_id")
     private User user;
 	
-	public Appointment(LocalDateTime dateTime, String appointmentStatus) {
+	public Appointment(Date dateTime, String appointmentStatus) {
 		super();
 		this.dateTime = dateTime;
 		this.appointmentStatus = appointmentStatus;
