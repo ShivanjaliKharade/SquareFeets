@@ -47,7 +47,7 @@ public class BuilderController {
 	}
 
 
-	//get property by Builder name
+	//get property by Builder id
 	@GetMapping("/builderproperty/{builderId}")
 	public ResponseEntity<Optional<Builder>> getProperty(@PathVariable("builderId") Integer builderId){
 

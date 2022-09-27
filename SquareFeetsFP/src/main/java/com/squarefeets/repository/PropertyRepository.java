@@ -10,7 +10,7 @@ import com.squarefeets.model.User;
 
 public interface PropertyRepository extends JpaRepository<Property, Integer> {
 	
-	public void deleteById(Integer propertyId);
+//	public void deleteById(Integer propertyId);
 	
 	Property findByPropertyId(Integer propertyId);
 

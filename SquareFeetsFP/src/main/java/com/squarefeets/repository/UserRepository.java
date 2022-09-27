@@ -1,5 +1,6 @@
 package com.squarefeets.repository;
 
+import com.squarefeets.model.Property;
 import com.squarefeets.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -19,5 +20,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByEmail(String email);
     
     public User findByUsername(String username);
+
+	Property findById(Integer id);
+
+	User getById(String id);
+
+	User getById(Integer id);
 
 }
