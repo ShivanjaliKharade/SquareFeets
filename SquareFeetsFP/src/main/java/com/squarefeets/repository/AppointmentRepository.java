@@ -7,10 +7,8 @@ import com.squarefeets.model.Property;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-	Appointment save(String aptDate);
 
-//	Appointment save(Property result);
-
+	Appointment getById(int appId);
 	
 		
 }
