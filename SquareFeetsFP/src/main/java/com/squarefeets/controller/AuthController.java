@@ -184,6 +184,10 @@ public class AuthController {
 
         User result = userRepository.save(user);
 
+        if (result != null){
+            emailService.sendEmailForNewRegistration(signUpRequestForBuilder.getEmail());
+        }
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/builder/{username}")
                 .buildAndExpand(result.getUsername()).toUri();

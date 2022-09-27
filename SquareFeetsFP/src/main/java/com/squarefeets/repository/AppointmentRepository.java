@@ -6,6 +6,6 @@ import com.squarefeets.model.Appointment;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-	Appointment getById(String appId);
+	Appointment getById(int appId);
 		
 }
