@@ -20,11 +20,11 @@ public class AppointmentController {
 	@Autowired
 	private AppiontmentService appointmentService;
 
-	 //add property
+	 //add Appointment
 		 @PostMapping("/addAppointment")
-		 public ResponseEntity<Appointment>addAppointment(@RequestBody Appointment appointment){
+		 public ResponseEntity<Appointment>addAppointment(@RequestBody String appointment){
 			 Appointment apt = null;
-		
+			 System.out.println(appointment);
 		 try {
 		 apt = this.appointmentService.addAppointment(appointment);
 		 System.out.println(appointment);
@@ -37,5 +37,23 @@ public class AppointmentController {
 		
 		
 		 }
+		 
+//		//add property
+//		 @PostMapping("/addAppointment/{propertyId}")
+//		 public ResponseEntity<Appointment>addAppointmentById(@RequestBody Integer propertyId){
+//			 Appointment apt = null;
+//			 System.out.println(propertyId);
+//		 try {
+//		 apt = this.appointmentService.addAppointmentbyPropId(propertyId);
+//		 System.out.println(propertyId);
+//		 return ResponseEntity.status(HttpStatus.CREATED).build();
+//		 }
+//		 catch (Exception e) {
+//		 e.printStackTrace();
+//		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//		 }
+//		
+//		
+//		 }
 	
 }

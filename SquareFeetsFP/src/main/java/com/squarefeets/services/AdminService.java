@@ -43,19 +43,19 @@ public class AdminService {
 		propertyRepository.delete(p);
 	}
 	
-	/*
+	
 	//delete Builder
-	public void deleteBuilder(String username) {
-		User user = userRepository.findByUsername(username);
+	public void deleteBuilder(long id) {
+		User user = userRepository.getById(id);
 		userRepository.delete(user);
 	}
-	*/
+	
 	
 	
 	//update approval status of builder
 	public void updateApprovalStatus(Builder builder, String approvalStatus) {
 		
-		builder.setApprovalStatus(approvalStatus);
+		builder.setApprovalStatus("Approved");
 		builderRepository.save(builder);
 	}
 
