@@ -56,7 +56,7 @@ public class User extends DateAudit implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Builder builder;
  
-	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     List<Property> property;
 	
 	
@@ -171,6 +171,22 @@ public class User extends DateAudit implements Serializable {
 
 	public void setProperty(List<Property> property) {
 		this.property = property;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
+	}
+
+	public List<Feedback> getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(List<Feedback> feedback) {
+		this.feedback = feedback;
 	}
 
     

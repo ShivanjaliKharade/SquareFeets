@@ -7,6 +7,7 @@ import com.squarefeets.payload.*;
 import com.squarefeets.repository.RoleRepository;
 import com.squarefeets.repository.UserRepository;
 import com.squarefeets.security.JwtTokenProvider;
+import com.squarefeets.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,9 @@ public class AuthController {
 
     @Autowired
     JwtTokenProvider tokenProvider;
+
+    @Autowired
+    EmailService emailService;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletRequest request) {
@@ -128,6 +132,61 @@ public class AuthController {
 
         User result = userRepository.save(user);
 
+        if (result != null){
+            emailService.sendEmailForNewRegistration(signUpRequestForCustomer.getEmail());
+        }
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/customer/{username}")
+                .buildAndExpand(result.getUsername()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
+    }
+
+    @PostMapping("/signup/admin")
+    public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignUpRequestForCustomer signUpRequestForCustomer) {
+        if(userRepository.existsByUsername(signUpRequestForCustomer.getUsername())) {
+            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByEmail(signUpRequestForCustomer.getEmail())) {
+            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        // Creating user's account
+//        User user = new User(SignUpRequestForCustomer.getUsername(),
+//                SignUpRequestForCustomer.getEmail(), SignUpRequestForCustomer.getPassword());
+
+        User user = new User(signUpRequestForCustomer.getUsername(),
+                signUpRequestForCustomer.getPassword(),
+                signUpRequestForCustomer.getEmail(),
+                signUpRequestForCustomer.getMobileNo(),
+                signUpRequestForCustomer.getAadharNo());
+
+        Address address = new Address(Integer.parseInt(signUpRequestForCustomer.getPlotNo()),
+                signUpRequestForCustomer.getStreet(),
+                signUpRequestForCustomer.getLandmark(),
+                signUpRequestForCustomer.getCity(),
+                signUpRequestForCustomer.getState(),
+                Integer.parseInt( signUpRequestForCustomer.getPincode()));
+
+        user.setAddress(address);
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new AppException("User Role not set."));
+
+        user.setRoles(Collections.singleton(userRole));
+
+        User result = userRepository.save(user);
+
+//        if (result != null){
+//            emailService.sendEmailForNewRegistration(signUpRequestForCustomer.getEmail());
+//        }
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/customer/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
@@ -176,6 +235,10 @@ public class AuthController {
 
         User result = userRepository.save(user);
 
+        if (result != null){
+            emailService.sendEmailForNewRegistration(signUpRequestForBuilder.getEmail());
+        }
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/builder/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
@@ -189,13 +252,19 @@ public class AuthController {
         return new ResponseEntity<>("Logout Successful", HttpStatus.OK);
     }
 
-    @PutMapping("/changeRequest")
+    @PutMapping("/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordPayloadRequest changePasswordPayloadRequest){
         Optional<User> optionUser = userRepository.findByEmail(changePasswordPayloadRequest.getUsernameOrEmail());
         User user = optionUser.get();
         user.setPassword(passwordEncoder.encode(changePasswordPayloadRequest.getNewPassword()));
-        userRepository.save(user);
+        User updatedUser = userRepository.save(user);
+        System.out.println(changePasswordPayloadRequest.getUsernameOrEmail());
+        if (updatedUser != null){
+            emailService.sendEmailForPasswordReset(changePasswordPayloadRequest.getUsernameOrEmail());
+        }
         return new ResponseEntity(new ApiResponse(true, "Password Changed Successfully"), HttpStatus.OK);
     }
+
+
 
 }

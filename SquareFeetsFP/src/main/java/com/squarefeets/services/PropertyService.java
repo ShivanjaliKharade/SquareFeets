@@ -3,11 +3,9 @@ package com.squarefeets.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import com.squarefeets.model.Address;
-import com.squarefeets.model.Property_Type;
-import com.squarefeets.model.User;
+import com.squarefeets.model.*;
 import com.squarefeets.payload.AddPropertyForBuilder;
+import com.squarefeets.repository.BuilderRepository;
 import com.squarefeets.repository.PropertyTypeRepository;
 import com.squarefeets.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,8 @@ public class PropertyService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private BuilderRepository builderRepository;
 
 	//add property using entity
 	public Property addProperty(Property prop) {
@@ -57,18 +57,30 @@ public class PropertyService {
 			}
 			return property;
 		}
-		
-		
+
+
 //		//get property by name
 //		public Property getPropertyByName(String propertyName) {
 //			Property property = null;
 //			try {
-//				property = this.propertyRepository.findByPropertyName(propertyName);
+//				property = this.propertyRepository.findById(propertyId);
 //			}catch (Exception e) {
 //				e.printStackTrace();
 //			}
 //			return property;
 //		}
+		
+		
+		//get property by name
+		public Property getPropertyByName(String propertyName) {
+			Property property = null;
+			try {
+				property = this.propertyRepository.findByPropertyName(propertyName);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return property;
+		}
 		
 		//add property using payload
 		public Property_Type findPropertyTypeById(Integer id){
@@ -88,6 +100,10 @@ public class PropertyService {
 			property.setReraReg(addPropertyForBuilder.getReraReg());
 			property.setArea(addPropertyForBuilder.getArea());
 			property.setRooms(addPropertyForBuilder.getRooms());
+
+
+			Builder builder = builderRepository.findById(Integer.parseInt(addPropertyForBuilder.getBuilderId())).get();
+			property.setBuilder(builder);
 
 			address.setPlotNo(Integer.parseInt(addPropertyForBuilder.getPlotNo()));
 			address.setStreet(addPropertyForBuilder.getStreet());

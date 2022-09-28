@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.squarefeets.model.Builder;
 import com.squarefeets.model.Property;
 import com.squarefeets.model.User;
+import com.squarefeets.repository.UserRepository;
 import com.squarefeets.services.AdminService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -26,6 +27,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	//propertyList
 	@GetMapping("/propertyList")
@@ -49,13 +53,28 @@ public class AdminController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(builderList);
 	}
 	
-	//Update Builder Approval Status
-	@PutMapping("/builderApproval/{builderId}")
-	public ResponseEntity<Builder>approveBuilder(@PathVariable("builderId") Builder builderId){
+//	//Update Builder Approval Status
+//	@PutMapping("/builderApproval/{builderId}")
+//	public ResponseEntity<Integer> approveBuilder(@PathVariable("builderId") Integer builderId){
+//		
+//		try {
+//			this.adminService.updateApprovalStatus(builderId, "Approved");
+//			return ResponseEntity.ok().body(builderId);
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//		}
+//	}
+	
+	@PutMapping("/builderApproval/{id}")
+	public ResponseEntity<Long> approveBuilder2(@PathVariable("id") Long id){
 		
 		try {
-			this.adminService.updateApprovalStatus(builderId, "Approved");
-			return ResponseEntity.ok().body(builderId);
+			User user = userRepository.getById(id);
+			Builder builder= user.getBuilder();
+			this.adminService.updateApprovalStatus(builder, "Approved");
+			return ResponseEntity.ok().body(id);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -65,10 +84,10 @@ public class AdminController {
 	
 	
 	@DeleteMapping("/removeProperty/{propertyId}")
-	public ResponseEntity<Void>deleteProperty(@PathVariable("propertyId") int propertyId){
-	
+	public ResponseEntity<?>deleteProperty(@PathVariable("propertyId") int propertyId){
+	//System.out.println(propertyId);
 	try {
-		this.adminService.deleteProperty(propertyId);
+		adminService.deleteProperty(propertyId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -76,13 +95,13 @@ public class AdminController {
 	}
 }
 	
-		/*
+		
 	//Delete Builder
-		@DeleteMapping("/removeBuilder/{username}")
-		public ResponseEntity<Void>deleteBuilder(@PathVariable("username") String username){
+		@DeleteMapping("/removeBuilder/{id}")
+		public ResponseEntity<?>deleteBuilder(@PathVariable("id") long id){
 		
 		try {
-			this.adminService.deleteBuilder(username);
+			adminService.deleteBuilder(id);
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +109,7 @@ public class AdminController {
 		}
 		
 	}
-	*/
+	
 	
 }
 	

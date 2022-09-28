@@ -44,7 +44,7 @@ public class Property implements Serializable {
 	private String details;
 	
 	@Column(name = "price")
-	private int price;
+	private Double price;
 	
 	@Column(name = "construction_status")
 	private String constructionStatus;
@@ -53,10 +53,13 @@ public class Property implements Serializable {
 	private String reraReg;
 	
 	@Column(name = "area")
-	private String area;
+	private Double area;
 	
 	@Column(name = "rooms")
 	private String rooms;
+	
+	@Column(name = "website")
+	private String website;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
@@ -73,10 +76,10 @@ public class Property implements Serializable {
     private Property_Type propertyType;
     
 	
-	@OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "property")
     List<Appointment> appointment;
     
-	
+	/*
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Feedback> feedback;
     
@@ -87,15 +90,16 @@ public class Property implements Serializable {
     
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     List<Property_Images> propertyImages;
-    
+    */
     
     @ManyToOne(cascade = CascadeType.MERGE, fetch= FetchType.LAZY)
     @JoinColumn(name = "builder_id")
+	@JsonIgnore
     private Builder builder;
      
     
-	public Property(String propertyName, String details, int price, String constructionStatus, String reraReg,
-			String area, String rooms) {
+	public Property(String propertyName, String details, Double price, String constructionStatus, String reraReg,
+			Double area, String rooms) {
 		super();
 		this.propertyName = propertyName;
 		this.details = details;
@@ -130,11 +134,11 @@ public class Property implements Serializable {
 		this.details = details;
 	}
 
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
@@ -154,11 +158,11 @@ public class Property implements Serializable {
 		this.reraReg = reraReg;
 	}
 
-	public String getArea() {
+	public Double getArea() {
 		return area;
 	}
 
-	public void setArea(String area) {
+	public void setArea(Double area) {
 		this.area = area;
 	}
 
@@ -202,7 +206,24 @@ public class Property implements Serializable {
 	public void setAppointment(List<Appointment> appointment) {
 		this.appointment = appointment;
 	}
+	
+	public Builder getBuilder() {
+		return builder;
+	}
 
+	public void setBuilder(Builder builder) {
+		this.builder = builder;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	/*
 	public List<Feedback> getFeedback() {
 		return feedback;
 	}
@@ -226,16 +247,8 @@ public class Property implements Serializable {
 	public void setPropertyImages(List<Property_Images> propertyImages) {
 		this.propertyImages = propertyImages;
 	}
+	*/
+
 	
-	/*
 
-	public Builder getBuilder() {
-		return builder;
-	}
-
-	public void setBuilder(Builder builder) {
-		this.builder = builder;
-	}
-    
-    */
 }
