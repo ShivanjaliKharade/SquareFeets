@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.squarefeets</groupId>
-	<artifactId>rolebasedlogin</artifactId>
+	<artifactId>squarefeetsfp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SquareFeetsFP</name>
 	<description>Final Project of Team-19 CDAC</description>

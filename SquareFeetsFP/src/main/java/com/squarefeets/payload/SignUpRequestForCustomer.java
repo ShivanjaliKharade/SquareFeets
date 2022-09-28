@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 public class SignUpRequestForCustomer {
 
     @NotBlank(message = "Please Enter username")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String username;
 
     @NotBlank(message = "Please Enter password")
