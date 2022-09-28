@@ -27,7 +27,7 @@ public @Data class UpdatePropertyPayload {
 
     @NotBlank(message = "Please Enter Property Price")
     @Size(min = 3, max = 15)
-    private int price;
+    private Double price;
 
     @NotBlank(message = "Please Enter Construction Status")
     @Size(min = 3, max = 15)
@@ -38,7 +38,7 @@ public @Data class UpdatePropertyPayload {
 
     @NotBlank(message = "Please Enter location")
     @Size(min = 3, max = 15)
-    private String area;
+    private Double area;
 
     @NotBlank(message = "Please Enter type of room")
     @Size(min = 0, max = 15)
@@ -102,11 +102,11 @@ public @Data class UpdatePropertyPayload {
         this.details = details;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice( Double price) {
         this.price = price;
     }
 
@@ -126,11 +126,11 @@ public @Data class UpdatePropertyPayload {
         this.reraReg = reraReg;
     }
 
-    public String getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 
