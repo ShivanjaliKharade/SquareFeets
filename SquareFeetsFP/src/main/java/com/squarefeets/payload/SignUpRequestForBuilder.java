@@ -7,11 +7,11 @@ import javax.validation.constraints.Size;
 public class SignUpRequestForBuilder {
 
     @NotBlank(message = "Please Enter username")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String username;
 
     @NotBlank(message = "Please Enter password")
-    @Size(min = 6, max = 20)
+    @Size(min = 6, max = 30)
     private String password;
 
     @NotBlank(message = "Please Enter email")
@@ -39,19 +39,19 @@ public class SignUpRequestForBuilder {
     private String plotNo;
 
     @NotBlank(message = "Please Enter street")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String street;
 
     @NotBlank(message = "Please Enter landmark")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String landmark;
 
     @NotBlank(message = "Please Enter city")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String city;
 
     @NotBlank(message = "Please Enter state")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 30)
     private String state;
 
     @NotBlank(message = "Please Enter pincode")

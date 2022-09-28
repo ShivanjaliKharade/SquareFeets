@@ -69,8 +69,6 @@ public class AdminService {
 		userRepository.delete(user);
 	}
 	
-	
-	
 	//update approval status of builder
 	public void updateApprovalStatus(Builder builder, String approvalStatus) {
 		
