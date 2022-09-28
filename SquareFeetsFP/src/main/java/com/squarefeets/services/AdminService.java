@@ -1,15 +1,23 @@
 package com.squarefeets.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+import javax.sql.XAConnectionBuilder;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.squarefeets.model.Builder;
 import com.squarefeets.model.Property;
+import com.squarefeets.model.RoleName;
 import com.squarefeets.model.User;
 import com.squarefeets.repository.BuilderRepository;
 import com.squarefeets.repository.PropertyRepository;
+import com.squarefeets.repository.RoleRepository;
 import com.squarefeets.repository.UserRepository;
 
 @Service
@@ -23,6 +31,9 @@ public class AdminService {
 	
 	@Autowired
 	private BuilderRepository builderRepository;
+	
+	 @Autowired
+	  RoleRepository roleRepository;
 
 	//get property list
 	public List<Property> getAllPropertiesList() {
@@ -33,7 +44,15 @@ public class AdminService {
 	//get builder list
 	public List<User> getAllBuildersList() {
 		List<User> builderList = (List<User>)this.userRepository.findAll();
-		return builderList;
+//		if(builderList.contains(RoleName.ROLE_BUILDER))
+		List<User> builderList2 = new ArrayList<>();
+		
+		for (User user : builderList) {
+			if (user.getBuilder() != null) {
+				builderList2.add(user);
+			}
+		}
+		return builderList2;
 	}
 	
 	
