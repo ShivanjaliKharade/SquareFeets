@@ -2,6 +2,8 @@ package com.squarefeets.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,7 @@ public class AdminController {
 	
 	//propertyList
 	@GetMapping("/propertyList")
+	@RolesAllowed("ROLE_ADMIN")
 	public ResponseEntity<List<Property>> getProperty(){
 
 		List<Property> propertyList = adminService.getAllPropertiesList();
@@ -44,6 +47,7 @@ public class AdminController {
 	
 	//BuilderList
 	@GetMapping("/builderList")
+	@RolesAllowed("ROLE_ADMIN")
 	public ResponseEntity<List<User>> getBuilder(){
 
 		List<User> builderList = adminService.getAllBuildersList();
@@ -68,6 +72,7 @@ public class AdminController {
 //	}
 	
 	@PutMapping("/builderApproval/{id}")
+	@RolesAllowed("ROLE_ADMIN")
 	public ResponseEntity<Long> approveBuilder2(@PathVariable("id") Long id){
 		
 		try {
@@ -88,7 +93,7 @@ public class AdminController {
 	//System.out.println(propertyId);
 	try {
 		adminService.deleteProperty(propertyId);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		return ResponseEntity.status(HttpStatus.OK).build();
 	} catch (Exception e) {
 		e.printStackTrace();
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -98,11 +103,12 @@ public class AdminController {
 		
 	//Delete Builder
 		@DeleteMapping("/removeBuilder/{id}")
+		@RolesAllowed("ROLE_ADMIN")
 		public ResponseEntity<?>deleteBuilder(@PathVariable("id") long id){
 		
 		try {
 			adminService.deleteBuilder(id);
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			return ResponseEntity.status(HttpStatus.OK).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

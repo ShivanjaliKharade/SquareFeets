@@ -100,6 +100,7 @@ public class PropertyService {
 			property.setReraReg(addPropertyForBuilder.getReraReg());
 			property.setArea(addPropertyForBuilder.getArea());
 			property.setRooms(addPropertyForBuilder.getRooms());
+			property.setWebsite(addPropertyForBuilder.getWebsite());
 
 
 			Builder builder = builderRepository.findById(Integer.parseInt(addPropertyForBuilder.getBuilderId())).get();
