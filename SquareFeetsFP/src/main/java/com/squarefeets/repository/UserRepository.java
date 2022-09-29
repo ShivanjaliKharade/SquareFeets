@@ -1,5 +1,6 @@
 package com.squarefeets.repository;
 
+import com.squarefeets.model.Feedback;
 import com.squarefeets.model.Property;
 import com.squarefeets.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,5 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User getById(String id);
 
 	User getById(Integer id);
+
+	Feedback save(Feedback feedback);
 
 }

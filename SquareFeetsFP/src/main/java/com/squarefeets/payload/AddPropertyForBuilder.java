@@ -1,5 +1,6 @@
 package com.squarefeets.payload;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -16,7 +17,7 @@ public @Data class AddPropertyForBuilder {
 	
 	@NotBlank(message = "Please Enter Property Name")
 	@UniqueElements
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
 	private String propertyName;
 	
 	@NotBlank(message = "Please Enter Property Details")
@@ -47,19 +48,19 @@ public @Data class AddPropertyForBuilder {
     private String plotNo;
 
     @NotBlank(message = "Please Enter Street")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String street;
 
     @NotBlank(message = "Please Enter Landmark")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String landmark;
 
     @NotBlank(message = "Please Enter City")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 50)
     private String city;
 
     @NotBlank(message = "Please Enter State")
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 30)
     private String state;
 
     @NotBlank(message = "Please Enter Pincode")
@@ -75,6 +76,9 @@ public @Data class AddPropertyForBuilder {
 
     @NotBlank
     private String builderId;
+    
+    @NotBlank
+	private String website;
 
     public String getPropertyName() {
         return propertyName;
@@ -203,4 +207,12 @@ public @Data class AddPropertyForBuilder {
     public void setBuilderId(String builderId) {
         this.builderId = builderId;
     }
+    
+    public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 }
