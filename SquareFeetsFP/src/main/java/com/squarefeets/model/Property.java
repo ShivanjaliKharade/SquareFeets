@@ -76,8 +76,8 @@ public class Property implements Serializable {
     private Property_Type propertyType;
     
 	
-	@OneToMany(mappedBy = "property")
-    List<Appointment> appointment;
+//	@OneToMany(mappedBy = "property")
+//    List<Appointment> appointment;
     
 	/*
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
@@ -199,13 +199,13 @@ public class Property implements Serializable {
 		this.propertyType = propertyType;
 	}
 
-	public List<Appointment> getAppointment() {
-		return appointment;
-	}
-
-	public void setAppointment(List<Appointment> appointment) {
-		this.appointment = appointment;
-	}
+//	public List<Appointment> getAppointment() {
+//		return appointment;
+//	}
+//
+//	public void setAppointment(List<Appointment> appointment) {
+//		this.appointment = appointment;
+//	}
 	
 	public Builder getBuilder() {
 		return builder;

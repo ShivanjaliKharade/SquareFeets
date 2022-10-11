@@ -66,9 +66,9 @@ public class User extends DateAudit implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Payment_Gateway> paymentGateway;
 	
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Appointment> appointment;
-    
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    List<Appointment> appointment;
+//    
 
   
 
@@ -173,13 +173,13 @@ public class User extends DateAudit implements Serializable {
 		this.property = property;
 	}
 
-	public List<Appointment> getAppointment() {
-		return appointment;
-	}
-
-	public void setAppointment(List<Appointment> appointment) {
-		this.appointment = appointment;
-	}
+//	public List<Appointment> getAppointment() {
+//		return appointment;
+//	}
+//
+//	public void setAppointment(List<Appointment> appointment) {
+//		this.appointment = appointment;
+//	}
 
 	public List<Feedback> getFeedback() {
 		return feedback;

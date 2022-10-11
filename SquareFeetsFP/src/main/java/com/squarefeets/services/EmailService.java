@@ -34,7 +34,7 @@ public class EmailService {
         message.setFrom("noreply.squarefeets@gmail.com");
         message.setTo(email);
         message.setSubject("Your password has been changed!");
-        message.setText("This is a confirmation that the password for your Cars4U account has just been changed.");
+        message.setText("This is a confirmation that the password for your Squarefeets account has just been changed.");
         emailSender.send(message);
     }
 }

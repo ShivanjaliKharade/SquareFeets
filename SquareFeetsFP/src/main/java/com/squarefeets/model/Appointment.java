@@ -38,13 +38,13 @@ public @Data class Appointment {
 	private String appointmentStatus;
 	
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "property_id")
-    private Property property;
-    
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "property_id")
+//    private Property property;
+//    
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 	
 	public Appointment(Date dateTime, String appointmentStatus) {
 		super();

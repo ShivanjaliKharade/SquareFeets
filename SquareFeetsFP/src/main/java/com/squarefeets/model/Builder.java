@@ -33,7 +33,7 @@ public @Data class Builder implements Serializable {
     private User user;
 
     
-    @OneToMany(mappedBy = "builder")
+    @OneToMany(mappedBy = "builder", cascade = CascadeType.ALL)
     List<Property> property;
     
 
